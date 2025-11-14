@@ -1,0 +1,6 @@
+reference_image_id,compare_image_id,cosine_similarity
+8,63,0.8617616
+9,75,0.80441546
+13,38,0.79143345
+21,62,0.7826746
+50,79,0.86865973

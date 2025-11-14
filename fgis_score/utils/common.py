@@ -61,13 +61,14 @@ def vis_parsing_maps(image, segmentation_mask, save_image=False, cs_path="", bm_
 
     num_classes = np.max(segmentation_mask)
 
-    mask_path = os.path.join(bm_path, number) # ./assets/binary_mask_output/BrunoMars/same_angle/0
+    mask_path = os.path.join(bm_path, number) # ./assets/binary_mask_output/celeb
     os.makedirs(mask_path, exist_ok=True)
 
     for class_index in range(1, num_classes + 1):
-        class_pixels = np.where(segmentation_mask == class_index) # class_index에 해당되는 모든 region pixel 찾기
+        class_pixels = np.where(segmentation_mask == class_index) # find every pixel belongs to class_index
         segmentation_mask_color[class_pixels[0], class_pixels[1], :] = COLOR_LIST[class_index]
 
+        # save binary mask of each region 
         if class_index in [1, 2, 3, 4, 5, 7, 8, 10, 11, 12, 13]:
             binary_mask = (segmentation_mask == class_index)
             mask_image = (binary_mask * 255).astype(np.uint8)

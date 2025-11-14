@@ -126,8 +126,6 @@ def inference(params: argparse.Namespace) -> None:
     # Process each file
     for file_path in tqdm(files_to_process, desc="Processing images"):
         filename = os.path.basename(file_path)
-        # root_ext_pair = os.path.splitext(filename)
-        # save_raw_path = os.path.join(output_path, root_ext_pair[0] + "_raw.png")
 
         try:
             # Load and process the image
