@@ -1,0 +1,2 @@
+reference_image,reference_path,avg_similarity,min_similarity,max_similarity,std_similarity
+000064.jpg,/data2/jiyoon/PAI-Bench/data/crawled/imgs/BrunoMars/000064.jpg,0.6652698529009916,0.5553863048553467,0.8162028789520264,0.0470290758576192

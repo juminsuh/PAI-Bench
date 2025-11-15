@@ -1,0 +1,4 @@
+reference_image,reference_path,avg_similarity,min_similarity,max_similarity,std_similarity
+000006.jpg,/data2/jiyoon/PAI-Bench/data/crawled/imgs/BrunoMars/000006.jpg,0.415313464038226,0.2008920162916183,0.754189133644104,0.1228775075771979
+000044.jpg,/data2/jiyoon/PAI-Bench/data/crawled/imgs/BrunoMars/000044.jpg,0.4257705780316372,0.2110715955495834,0.5918717384338379,0.0712571805637071
+181.jpg,/data2/jiyoon/PAI-Bench/data/crawled/imgs/BrunoMars/181.jpg,0.4282755602379234,0.1727735549211502,0.7385982871055603,0.1040048308693403
