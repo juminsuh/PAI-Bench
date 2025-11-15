@@ -1,8 +1,0 @@
-folder,image1,image2,image1_path,image2_path,arcface_similarity
-BrunoMars,000059.jpg,162.jpg,/data2/jiyoon/PAI-Bench/data/crawled/imgs/BrunoMars/000059.jpg,/data2/jiyoon/PAI-Bench/data/crawled/imgs/BrunoMars/162.jpg,0.4172256588935852
-BrunoMars,000006.jpg,168.jpg,/data2/jiyoon/PAI-Bench/data/crawled/imgs/BrunoMars/000006.jpg,/data2/jiyoon/PAI-Bench/data/crawled/imgs/BrunoMars/168.jpg,0.42200911045074463
-BrunoMars,000064.jpg,168.jpg,/data2/jiyoon/PAI-Bench/data/crawled/imgs/BrunoMars/000064.jpg,/data2/jiyoon/PAI-Bench/data/crawled/imgs/BrunoMars/168.jpg,0.4321873188018799
-BrunoMars,000031.jpg,000038.jpg,/data2/jiyoon/PAI-Bench/data/crawled/imgs/BrunoMars/000031.jpg,/data2/jiyoon/PAI-Bench/data/crawled/imgs/BrunoMars/000038.jpg,0.9108827114105225
-BrunoMars,000005.jpg,191.jpg,/data2/jiyoon/PAI-Bench/data/crawled/imgs/BrunoMars/000005.jpg,/data2/jiyoon/PAI-Bench/data/crawled/imgs/BrunoMars/191.jpg,0.9113442897796631
-BrunoMars,000034.jpg,000049.jpg,/data2/jiyoon/PAI-Bench/data/crawled/imgs/BrunoMars/000034.jpg,/data2/jiyoon/PAI-Bench/data/crawled/imgs/BrunoMars/000049.jpg,0.9646527767181396
-BrunoMars,000054.jpg,000096.jpg,/data2/jiyoon/PAI-Bench/data/crawled/imgs/BrunoMars/000054.jpg,/data2/jiyoon/PAI-Bench/data/crawled/imgs/BrunoMars/000096.jpg,0.9666977524757385
