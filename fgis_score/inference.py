@@ -1,5 +1,4 @@
 import os
-import argparse
 import logging
 from typing import List, Tuple, Optional
 from pathlib import Path
@@ -17,6 +16,19 @@ from utils.common import vis_parsing_maps
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 logger = logging.getLogger(__name__)
+
+
+
+class Config:
+    """Configuration class to replace argparse"""
+    def __init__(self):
+        # Set your parameters here
+        self.model = "resnet34"
+        self.weight = "/data2/jiyoon/PAI-Bench/ckpts/resnet34.pt"
+        self.input = "/data2/jiyoon/PAI-Bench/data/crawled/imgs/BrunoMars"
+        self.colored_segmentation_output = "/data2/jiyoon/PAI-Bench/results/fgis/colored_segmentation_output"
+        self.binary_mask_output = "/data2/jiyoon/PAI-Bench/results/fgis/binary_mask_output"
+        self.celeb = "BrunoMars"
 
 
 def prepare_image(image: Image.Image, input_size: Tuple[int, int] = (512, 512)) -> torch.Tensor:
@@ -91,14 +103,13 @@ def get_files_to_process(input_path: str) -> List[str]:
     image_extensions = ('.png', '.jpg', '.jpeg', '.bmp', '.tiff')
     return [f for f in files if os.path.isfile(f) and f.lower().endswith(image_extensions)]
 
-
 @torch.no_grad()
-def inference(params: argparse.Namespace) -> None:
+def inference(params: Config) -> None:
     """
     Run inference on images using the face parsing model.
 
     Args:
-        params: Configuration namespace containing required parameters
+        params: Configuration object containing required parameters
     """
     cs_path = os.path.join(params.colored_segmentation_output, params.celeb) # ./assets/colored_segmentation_output/BrunoMars
     os.makedirs(cs_path, exist_ok=True) 
@@ -170,49 +181,27 @@ def inference(params: argparse.Namespace) -> None:
     logger.info(f"Processing complete. Results saved to {cs_path} and {bm_path}.")
 
 
-def parse_args() -> argparse.Namespace:
+def validate_config(config: Config) -> None:
     """
-    Parse and validate command line arguments.
+    Validate configuration parameters.
 
-    Returns:
-        argparse.Namespace: Validated command line arguments
+    Args:
+        config: Configuration object to validate
     """
-    parser = argparse.ArgumentParser(description="Face parsing inference")
-    parser.add_argument(
-        "--model",
-        type=str,
-        default="resnet18",
-        choices=["resnet18", "resnet34"],
-        help="model name, i.e resnet18, resnet34"
-    )
-    parser.add_argument(
-        "--weight",
-        type=str,
-        default="./weights/resnet18.pt",
-        help="path to trained model, i.e resnet18/34"
-    )
-    parser.add_argument("--input", type=str, default="./assets/images/BrunoMars", help="path to an image or a folder of images")
-    parser.add_argument("--colored_segmentation_output", type=str, default="./assets/colored_segmentation_output", help="path to save colored segmentation outputs")
-    parser.add_argument("--binary_mask_output", type=str, default="./assets/binary_mask_output", help="path to save binary mask output")
-    parser.add_argument("--celeb", type=str, default="BrunoMars", help="celeb name to process")
-
-    args = parser.parse_args()
-
     # Validate arguments
-    if not os.path.exists(args.input):
-        raise ValueError(f"Input path does not exist: {args.input}")
+    if not os.path.exists(config.input):
+        raise ValueError(f"Input path does not exist: {config.input}")
 
-    if not os.path.exists(os.path.dirname(args.weight)):
-        logger.warning(f"Weight directory does not exist: {os.path.dirname(args.weight)}")
-
-    return args
+    if not os.path.exists(os.path.dirname(config.weight)):
+        logger.warning(f"Weight directory does not exist: {os.path.dirname(config.weight)}")
 
 
 def main() -> None:
     """Main entry point of the script."""
     try:
-        args = parse_args()
-        inference(params=args)
+        config = Config()
+        validate_config(config)
+        inference(params=config)
     except Exception as e:
         logger.error(f"An error occurred: {e}")
         raise
