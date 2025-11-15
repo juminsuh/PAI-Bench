@@ -1,3 +1,8 @@
+"""
+Code that extracts region-wise dino embedding
+and save it as pkl file
+"""
+
 import os
 import numpy as np
 import pandas as pd
@@ -195,10 +200,10 @@ def extract_all_embeddings(base_images_dir, base_masks_dir, output_path="face_em
 
 if __name__ == "__main__":
     # set directories
-    celeb = "FanBingbing"
-    base_images_dir = "./assets/images"
-    base_masks_dir = "./assets/binary_mask_output"
-    output_path = f"./embedding/face_region_embeddings_{celeb}.pkl"
+    celeb = "BrunoMars"
+    base_images_dir = "/data2/jiyoon/PAI-Bench/data/crawled/imgs"
+    base_masks_dir =  "/data2/jiyoon/PAI-Bench/results/fgis/binary_mask_output"
+    output_path = f"/data2/jiyoon/PAI-Bench/results/fgis/embeddings/{celeb}.pkl"
     
     df = extract_all_embeddings(
         base_images_dir, 
