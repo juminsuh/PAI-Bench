@@ -200,10 +200,10 @@ def extract_all_embeddings(base_images_dir, base_masks_dir, output_path="face_em
 
 if __name__ == "__main__":
     # set directories
-    celeb = "BrunoMars"
+    celeb = "TomHolland"
     base_images_dir = "/data2/jiyoon/PAI-Bench/data/crawled/imgs"
-    base_masks_dir =  "/data2/jiyoon/PAI-Bench/results/fgis/binary_mask_output"
-    output_path = f"/data2/jiyoon/PAI-Bench/results/fgis/embeddings/{celeb}.pkl"
+    base_masks_dir =  "/data2/jiyoon/PAI-Bench/data/crawled/fgis/binary_mask_output"
+    output_path = f"/data2/jiyoon/PAI-Bench/data/crawled/fgis/embeddings/{celeb}.pkl"
     
     df = extract_all_embeddings(
         base_images_dir, 

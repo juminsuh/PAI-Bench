@@ -10,7 +10,7 @@ def compute_diagonal_sim(celeb_list):
         results = []
         
         # open .pkl file
-        with open(f'./embedding/face_region_embeddings_{celeb}.pkl', 'rb') as f: # original image
+        with open(f'/data2/jiyoon/PAI-Bench/data/crawled/fgis/embeddings/{celeb}.pkl', 'rb') as f: # original image
             embeddings = pickle.load(f)
         
         # convert to df
@@ -75,7 +75,7 @@ def compute_diagonal_sim(celeb_list):
 def compute_non_diagonal_sim(celeb_list):
     celeb_embeddings = {}
     for celeb in celeb_list:
-        with open(f"./embedding/face_region_embeddings_{celeb}.pkl", 'rb') as f:
+        with open(f"/data2/jiyoon/PAI-Bench/data/crawled/fgis/embeddings/{celeb}.pkl", 'rb') as f:
             embeddings = pickle.load(f)
         celeb_embeddings[celeb] = embeddings
         
