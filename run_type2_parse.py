@@ -1,6 +1,8 @@
 import os
-from openai import OpenAI
+import re
 import json
+
+from openai import OpenAI
 from dotenv import load_dotenv
 
 # --------------------------------
@@ -68,7 +70,6 @@ Now analyze the following prompt: {description}
 # --------------------------------
     
 def run_type2_mcq(text):
-    print("run_type2_mcq called:", text)
     formatted_prompt = USER_PROMPT.format(description=text)
     
     response = client.chat.completions.create(
@@ -93,32 +94,55 @@ def run_type2_mcq(text):
 # 4. batch evaluation for type2 parser
 # -------------------------------------
 
-def load_text(jsonl_path):
-    with open(jsonl_path, 'r') as f:
-        texts = []
-        for line in f:
-            data = json.loads(line)
-            texts.append(data['text_prompt'])
-    return texts
+def load_text(json_path):
+    '''
+    input: jsonl 파일 경로 
+    output: jsonl의 각 객체의 'text' list
+    '''
+    ids = []
+    texts = []
+    with open(json_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+        for item in data:
+            ids.append(item['id'])
+            texts.append(item['prompt'])
+    return ids, texts
 
-def main(jsonl_path):
-    texts = load_text(jsonl_path=jsonl_path)
-    results = {}
+def main(json_path):
+    '''
+    input: json 파일 경로
+    output: json file 
+    '''
+    ids, texts = load_text(json_path=json_path)
+    results = []
     
-    for i, text in enumerate(texts):
+    factors_pattern = r"Factors:\s*\[([^\]]+)\]"
+    desc_pattern = r'Description:\s*"?([^"\n]+)"?'
+    
+    for id, text in zip(ids, texts):
         if text is None:
-            print(f"{i}-th text is missing.")
+            print(f"{id} text is missing.")
             continue
         
-        print(f"{i}-th text is being parsed...")
+        print(f"📌 Parsing {id}...")
         
         try:
             parsed_out = run_type2_mcq(text=text)
-            print(f"{i}-th text parsed_out: {parsed_out}")
-            results[i] = parsed_out
+            
+            factors = re.search(factors_pattern, parsed_out).group(1)
+            factor_list = [x.strip() for x in factors.split(",")]
+            description = re.search(desc_pattern, parsed_out).group(1)
+            
+            print(f"\n✅ {id} text have {factor_list}")
+            print(f"✅ {id} text parsed_out: {text} ➡️ {description}")
+            
+            results.append({
+                'id': id,
+                'factor': factor_list,
+                'description': description
+            })
         except Exception as e:
-            print(f"[{i}] ERROR: {e}")
-            results[i] = {"error": str(e), "text": text} 
+            print(f"[{id}] ERROR: {e}")
     
     return results
 
@@ -126,8 +150,7 @@ def main(jsonl_path):
 # 5. save results
 # --------------------------------
 if __name__ == '__main__':
-    jsonl_path="./test_prompts.jsonl"
-    parsed=main(jsonl_path=jsonl_path)
-    with open("./type2_parsed_results.json", "w") as f:
-        json.dump(parsed, f, indent=2)
-
+    json_path="./generation_prompts.json"
+    parsed=main(json_path=json_path)
+    with open("./type2_parsed_results.json", "w", encoding="utf-8") as f:
+        json.dump(parsed, f, indent=2, ensure_ascii=False)
