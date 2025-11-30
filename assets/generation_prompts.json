@@ -17,7 +17,7 @@
   {
     "id": "004",
     "class_word": "woman",
-    "prompt": "a woman blinking and wearing a black hat"
+    "prompt": "a woman smiling and wearing a black hat"
   },
   {
     "id": "005",
@@ -106,8 +106,8 @@
   },
   {
     "id": "022",
-    "class_word": "woman",
-    "prompt": "a woman laughing and wearing a purple wizard outfit"
+    "class_word": "girl",
+    "prompt": "a girl laughing and wearing a purple wizard outfit"
   },
   {
     "id": "023",
@@ -117,7 +117,7 @@
   {
     "id": "024",
     "class_word": "woman",
-    "prompt": "a woman blinking with short black hair"
+    "prompt": "a woman crying with short black hair"
   },
   {
     "id": "025",
@@ -141,8 +141,8 @@
   },
   {
     "id": "029",
-    "class_word": "woman",
-    "prompt": "a woman not smiling and wearing a santa hat"
+    "class_word": "girl",
+    "prompt": "a girl not smiling and wearing a santa hat"
   },
   {
     "id": "030",
@@ -181,13 +181,13 @@
   },
   {
     "id": "037",
-    "class_word": "man",
-    "prompt": "a man smiling with black hair"
+    "class_word": "boy",
+    "prompt": "a boy smiling with black hair"
   },
   {
     "id": "038",
-    "class_word": "man",
-    "prompt": "a man raising eyebrows and wearing a black T-shirt"
+    "class_word": "boy",
+    "prompt": "a boy raising eyebrows and wearing a black T-shirt"
   },
   {
     "id": "039",
@@ -211,8 +211,8 @@
   },
   {
     "id": "043",
-    "class_word": "man",
-    "prompt": "a man eating cookies and wearing a blue hoodie"
+    "class_word": "boy",
+    "prompt": "a boy eating cookies and wearing a blue hoodie"
   },
   {
     "id": "044",
@@ -231,13 +231,13 @@
   },
   {
     "id": "047",
-    "class_word": "man",
-    "prompt": "a man smiling and wearing a purple wizard outfit"
+    "class_word": "boy",
+    "prompt": "a boy smiling and wearing a purple wizard outfit"
   },
   {
     "id": "048",
     "class_word": "man",
-    "prompt": "a man blinking and wearing headphones"
+    "prompt": "a man not smiling and wearing headphones"
   },
   {
     "id": "049",
