@@ -1,0 +1,252 @@
+[
+  {
+    "id": "001",
+    "class_word": "woman",
+    "prompt": "a woman smiling and wearing a white T-shirt"
+  },
+  {
+    "id": "002",
+    "class_word": "woman",
+    "prompt": "a woman laughing with long blond hair"
+  },
+  {
+    "id": "003",
+    "class_word": "woman",
+    "prompt": "a woman smiling with curly long dark brown hair"
+  },
+  {
+    "id": "004",
+    "class_word": "woman",
+    "prompt": "a woman smiling and wearing a black hat"
+  },
+  {
+    "id": "005",
+    "class_word": "woman",
+    "prompt": "a woman surprised and wearing a chef outfit"
+  },
+  {
+    "id": "006",
+    "class_word": "woman",
+    "prompt": "a woman holding a glass of wine and wearing a black dress"
+  },
+  {
+    "id": "007",
+    "class_word": "woman",
+    "prompt": "a woman eating ice-cream with long black hair"
+  },
+  {
+    "id": "008",
+    "class_word": "woman",
+    "prompt": "a woman smiling and in a chef outfit"
+  },
+  {
+    "id": "009",
+    "class_word": "woman",
+    "prompt": "a woman crying with long black hair"
+  },
+  {
+    "id": "010",
+    "class_word": "woman",
+    "prompt": "a woman smiling and wearing headphones"
+  },
+  {
+    "id": "011",
+    "class_word": "man",
+    "prompt": "a man smiling and wearing a chef outfit"
+  },
+  {
+    "id": "012",
+    "class_word": "man",
+    "prompt": "a man holding a glass of wine and wearing a white suit"
+  },
+  {
+    "id": "013",
+    "class_word": "man",
+    "prompt": "a man smiling and wearing a black hat"
+  },
+  {
+    "id": "014",
+    "class_word": "man",
+    "prompt": "a man surprised and wearing a police outfit"
+  },
+  {
+    "id": "015",
+    "class_word": "man",
+    "prompt": "a man smiling and wearing a santa hat"
+  },
+  {
+    "id": "016",
+    "class_word": "man",
+    "prompt": "a man eating ice-cream and wearing a white T-shirt"
+  },
+  {
+    "id": "017",
+    "class_word": "man",
+    "prompt": "a man raising eyebrows and wearing a yellow shirt"
+  },
+  {
+    "id": "018",
+    "class_word": "man",
+    "prompt": "a man smiling and wearing a purple wizard outfit"
+  },
+  {
+    "id": "019",
+    "class_word": "man",
+    "prompt": "a man frowning and wearing a firefighter outfit"
+  },
+  {
+    "id": "020",
+    "class_word": "man",
+    "prompt": "a man smiling with black hair"
+  },
+  {
+    "id": "021",
+    "class_word": "woman",
+    "prompt": "a woman crying and wearing a chef outfit"
+  },
+  {
+    "id": "022",
+    "class_word": "girl",
+    "prompt": "a girl laughing and wearing a purple wizard outfit"
+  },
+  {
+    "id": "023",
+    "class_word": "woman",
+    "prompt": "a woman surprised with long blond hair"
+  },
+  {
+    "id": "024",
+    "class_word": "woman",
+    "prompt": "a woman crying with short black hair"
+  },
+  {
+    "id": "025",
+    "class_word": "woman",
+    "prompt": "a woman surprised and wearing a gray sweater"
+  },
+  {
+    "id": "026",
+    "class_word": "woman",
+    "prompt": "a woman eating ice-cream and wearing a black hat"
+  },
+  {
+    "id": "027",
+    "class_word": "woman",
+    "prompt": "a woman frowning and wearing a white hoodie"
+  },
+  {
+    "id": "028",
+    "class_word": "woman",
+    "prompt": "a woman eating cookies with long black hair"
+  },
+  {
+    "id": "029",
+    "class_word": "girl",
+    "prompt": "a girl not smiling and wearing a santa hat"
+  },
+  {
+    "id": "030",
+    "class_word": "woman",
+    "prompt": "a woman frowning with short blond hair"
+  },
+  {
+    "id": "031",
+    "class_word": "woman",
+    "prompt": "a woman surprised and wearing earrings"
+  },
+  {
+    "id": "032",
+    "class_word": "woman",
+    "prompt": "a woman surprised and wearing a blue hoodie"
+  },
+  {
+    "id": "033",
+    "class_word": "woman",
+    "prompt": "a woman eating cookies with long blond hair"
+  },
+  {
+    "id": "034",
+    "class_word": "woman",
+    "prompt": "a woman cooking a meal and wearing a chef outfit"
+  },
+  {
+    "id": "035",
+    "class_word": "woman",
+    "prompt": "a woman not smiling and with long blond hair"
+  },
+  {
+    "id": "036",
+    "class_word": "man",
+    "prompt": "a man frowning and wearing a white shirt"
+  },
+  {
+    "id": "037",
+    "class_word": "boy",
+    "prompt": "a boy smiling with black hair"
+  },
+  {
+    "id": "038",
+    "class_word": "boy",
+    "prompt": "a boy raising eyebrows and wearing a black T-shirt"
+  },
+  {
+    "id": "039",
+    "class_word": "man",
+    "prompt": "a man smiling and wearing a white suit"
+  },
+  {
+    "id": "040",
+    "class_word": "man",
+    "prompt": "a man laughing and wearing a gray sweater"
+  },
+  {
+    "id": "041",
+    "class_word": "man",
+    "prompt": "a man not smiling and wearing a firefighter outfit"
+  },
+  {
+    "id": "042",
+    "class_word": "man",
+    "prompt": "a man surprised and wearing a black hat"
+  },
+  {
+    "id": "043",
+    "class_word": "boy",
+    "prompt": "a boy eating cookies and wearing a blue hoodie"
+  },
+  {
+    "id": "044",
+    "class_word": "man",
+    "prompt": "a man eating ice-cream with blond hair"
+  },
+  {
+    "id": "045",
+    "class_word": "man",
+    "prompt": "a man not smiling wearing a santa hat"
+  },
+  {
+    "id": "046",
+    "class_word": "man",
+    "prompt": "a man frowning with blond hair"
+  },
+  {
+    "id": "047",
+    "class_word": "boy",
+    "prompt": "a boy smiling and wearing a purple wizard outfit"
+  },
+  {
+    "id": "048",
+    "class_word": "man",
+    "prompt": "a man not smiling and wearing headphones"
+  },
+  {
+    "id": "049",
+    "class_word": "man",
+    "prompt": "a man smiling and wearing a black hat"
+  },
+  {
+    "id": "050",
+    "class_word": "man",
+    "prompt": "a man eating cookies and wearing a chef outfit"
+  }
+]

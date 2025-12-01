@@ -1,0 +1,402 @@
+[
+  {
+    "id": "001",
+    "factor": [
+      "emotion",
+      "clothes"
+    ],
+    "description": "woman smiling and wearing a white T-shirt"
+  },
+  {
+    "id": "002",
+    "factor": [
+      "emotion",
+      "hairstyle"
+    ],
+    "description": "woman laughing with long blond hair"
+  },
+  {
+    "id": "003",
+    "factor": [
+      "emotion",
+      "hairstyle"
+    ],
+    "description": "woman smiling with curly long dark brown hair"
+  },
+  {
+    "id": "004",
+    "factor": [
+      "action",
+      "accessories"
+    ],
+    "description": "woman blinking and wearing a black hat"
+  },
+  {
+    "id": "005",
+    "factor": [
+      "emotion",
+      "clothes"
+    ],
+    "description": "woman surprised and wearing a chef outfit"
+  },
+  {
+    "id": "006",
+    "factor": [
+      "action",
+      "clothes"
+    ],
+    "description": "woman holding a glass of wine and wearing a black dress"
+  },
+  {
+    "id": "007",
+    "factor": [
+      "action",
+      "hairstyle"
+    ],
+    "description": "woman eating ice-cream with long black hair"
+  },
+  {
+    "id": "008",
+    "factor": [
+      "emotion",
+      "clothes"
+    ],
+    "description": "woman smiling in a chef outfit"
+  },
+  {
+    "id": "009",
+    "factor": [
+      "emotion",
+      "hairstyle"
+    ],
+    "description": "woman crying with long black hair"
+  },
+  {
+    "id": "010",
+    "factor": [
+      "emotion",
+      "accessories"
+    ],
+    "description": "woman smiling and wearing headphones"
+  },
+  {
+    "id": "011",
+    "factor": [
+      "emotion",
+      "clothes"
+    ],
+    "description": "man smiling and wearing a chef outfit"
+  },
+  {
+    "id": "012",
+    "factor": [
+      "action",
+      "clothes"
+    ],
+    "description": "man holding a glass of wine and wearing a white suit"
+  },
+  {
+    "id": "013",
+    "factor": [
+      "emotion",
+      "accessories"
+    ],
+    "description": "man smiling and wearing a black hat"
+  },
+  {
+    "id": "014",
+    "factor": [
+      "emotion",
+      "clothes"
+    ],
+    "description": "man surprised and wearing a police outfit"
+  },
+  {
+    "id": "015",
+    "factor": [
+      "emotion",
+      "accessories"
+    ],
+    "description": "man smiling and wearing a santa hat"
+  },
+  {
+    "id": "016",
+    "factor": [
+      "action",
+      "clothes"
+    ],
+    "description": "man eating ice-cream and wearing a white T-shirt"
+  },
+  {
+    "id": "017",
+    "factor": [
+      "emotion",
+      "clothes"
+    ],
+    "description": "man raising eyebrows and wearing a yellow shirt"
+  },
+  {
+    "id": "018",
+    "factor": [
+      "emotion",
+      "clothes"
+    ],
+    "description": "man smiling in a purple wizard outfit"
+  },
+  {
+    "id": "019",
+    "factor": [
+      "emotion",
+      "clothes"
+    ],
+    "description": "man frowning in a firefighter outfit"
+  },
+  {
+    "id": "020",
+    "factor": [
+      "emotion",
+      "hairstyle"
+    ],
+    "description": "man smiling with black hair"
+  },
+  {
+    "id": "021",
+    "factor": [
+      "emotion",
+      "clothes"
+    ],
+    "description": "woman crying and wearing a chef outfit"
+  },
+  {
+    "id": "022",
+    "factor": [
+      "emotion",
+      "clothes"
+    ],
+    "description": "girl laughing in a purple wizard outfit"
+  },
+  {
+    "id": "023",
+    "factor": [
+      "emotion",
+      "hairstyle"
+    ],
+    "description": "woman surprised with long blond hair"
+  },
+  {
+    "id": "024",
+    "factor": [
+      "action",
+      "hairstyle"
+    ],
+    "description": "woman blinking with short black hair"
+  },
+  {
+    "id": "025",
+    "factor": [
+      "emotion",
+      "clothes"
+    ],
+    "description": "woman surprised and wearing a gray sweater"
+  },
+  {
+    "id": "026",
+    "factor": [
+      "action",
+      "accessories"
+    ],
+    "description": "woman eating ice-cream and wearing a black hat"
+  },
+  {
+    "id": "027",
+    "factor": [
+      "emotion",
+      "clothes"
+    ],
+    "description": "woman frowning and wearing a white hoodie"
+  },
+  {
+    "id": "028",
+    "factor": [
+      "action",
+      "hairstyle"
+    ],
+    "description": "woman eating cookies with long black hair"
+  },
+  {
+    "id": "029",
+    "factor": [
+      "emotion",
+      "accessories"
+    ],
+    "description": "woman not smiling and wearing a santa hat"
+  },
+  {
+    "id": "030",
+    "factor": [
+      "emotion",
+      "hairstyle"
+    ],
+    "description": "woman frowning with short blond hair"
+  },
+  {
+    "id": "031",
+    "factor": [
+      "emotion",
+      "accessories"
+    ],
+    "description": "woman surprised and wearing earrings"
+  },
+  {
+    "id": "032",
+    "factor": [
+      "emotion",
+      "clothes"
+    ],
+    "description": "woman surprised and wearing a blue hoodie"
+  },
+  {
+    "id": "033",
+    "factor": [
+      "action",
+      "hairstyle"
+    ],
+    "description": "woman eating cookies with long blond hair"
+  },
+  {
+    "id": "034",
+    "factor": [
+      "action",
+      "clothes"
+    ],
+    "description": "woman cooking a meal wearing a chef outfit"
+  },
+  {
+    "id": "035",
+    "factor": [
+      "emotion",
+      "hairstyle"
+    ],
+    "description": "woman not smiling with long blond hair"
+  },
+  {
+    "id": "036",
+    "factor": [
+      "emotion",
+      "clothes"
+    ],
+    "description": "man frowning and wearing a white shirt"
+  },
+  {
+    "id": "037",
+    "factor": [
+      "emotion",
+      "hairstyle"
+    ],
+    "description": "man smiling with black hair"
+  },
+  {
+    "id": "038",
+    "factor": [
+      "emotion",
+      "clothes"
+    ],
+    "description": "man raising eyebrows wearing a black T-shirt"
+  },
+  {
+    "id": "039",
+    "factor": [
+      "emotion",
+      "clothes"
+    ],
+    "description": "man smiling and wearing a white suit"
+  },
+  {
+    "id": "040",
+    "factor": [
+      "emotion",
+      "clothes"
+    ],
+    "description": "man laughing and wearing a gray sweater"
+  },
+  {
+    "id": "041",
+    "factor": [
+      "emotion",
+      "clothes"
+    ],
+    "description": "man not smiling and wearing a firefighter outfit"
+  },
+  {
+    "id": "042",
+    "factor": [
+      "emotion",
+      "accessories"
+    ],
+    "description": "man surprised and wearing a black hat"
+  },
+  {
+    "id": "043",
+    "factor": [
+      "action",
+      "clothes"
+    ],
+    "description": "man eating cookies and wearing a blue hoodie"
+  },
+  {
+    "id": "044",
+    "factor": [
+      "action",
+      "hairstyle"
+    ],
+    "description": "man eating ice-cream with blond hair"
+  },
+  {
+    "id": "045",
+    "factor": [
+      "emotion",
+      "accessories"
+    ],
+    "description": "man not smiling wearing a santa hat"
+  },
+  {
+    "id": "046",
+    "factor": [
+      "emotion",
+      "hairstyle"
+    ],
+    "description": "man frowning with blond hair"
+  },
+  {
+    "id": "047",
+    "factor": [
+      "emotion",
+      "clothes"
+    ],
+    "description": "man smiling in a purple wizard outfit"
+  },
+  {
+    "id": "048",
+    "factor": [
+      "action",
+      "accessories"
+    ],
+    "description": "man blinking and wearing headphones"
+  },
+  {
+    "id": "049",
+    "factor": [
+      "emotion",
+      "accessories"
+    ],
+    "description": "man smiling and wearing a black hat"
+  },
+  {
+    "id": "050",
+    "factor": [
+      "action",
+      "clothes"
+    ],
+    "description": "man eating cookies and wearing a chef outfit"
+  }
+]
