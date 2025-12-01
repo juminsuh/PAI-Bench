@@ -5,7 +5,7 @@ import json
 from dotenv import load_dotenv
 
 # --------------------------------
-# 1. API 설정
+# 1. API
 # --------------------------------
 load_dotenv()
 API_KEY = os.getenv("OPENAI_API_KEY")
@@ -52,7 +52,7 @@ the Actions exactly. Do not output anything other than the option number you sel
 
 
 # --------------------------------
-# 3. 이미지 인코딩
+# 3. Encoding image
 # --------------------------------
 def encode_image(path):
     with open(path, "rb") as f:
@@ -60,7 +60,7 @@ def encode_image(path):
 
 
 # --------------------------------
-# 4. Type1 MCQ 평가 실행 함수
+# 4. Run Type1 MCQ evaluation
 # --------------------------------
 
 def get_mime(path):
@@ -115,7 +115,7 @@ def run_type1_mcq(ref_img_path, gen_img_path):
 # 5. batch evaluation for type1
 # --------------------------------
 ref_folder = "type1"
-gen_folder = "gen"    # generated img들 폴더
+gen_folder = "gen"    # generated imgs folder
 
 results = {}
 
@@ -161,7 +161,15 @@ for fname in sorted(os.listdir(ref_folder)):
 # --------------------------------
 # 6. save results
 # --------------------------------
+output_list = []
+
+for idx, mcq_out in results.items():
+    output_list.append({
+        "id": idx.zfill(3), 
+        "result": mcq_out
+    })
+
 with open("type1_results.json", "w") as f:
-    json.dump(results, f, indent=2)
+    json.dump(output_list, f, indent=2, ensure_ascii=False)
 
 print("Done! Saved → type1_results.json")
