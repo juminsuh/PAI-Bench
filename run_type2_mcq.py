@@ -189,7 +189,7 @@ def main(gen_folder_path, parsed_data_path, output_path):
 
 
 if __name__ == "__main__":
-    gen_folder_path = "/data2/jiyoon/PAI-Bench/data/datasets_final/generation/generated_gpt5.1"
+    gen_folder_path = "/data2/jiyoon/PAI-Bench/data/datasets_final/generation/generated_gemini2.5Flash"
     parsed_data_path = "/home/jiyoon/PAI-Bench/results/type2_parsed_results.json"
-    output_path = "./results/type2_mcq_results.json"
+    output_path = "./results/type2_mcq_gemini.json"
     main(gen_folder_path, parsed_data_path, output_path)
