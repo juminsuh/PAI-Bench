@@ -1,0 +1,2 @@
+total_pairs,valid_pairs,mean_similarity,std_similarity,min_similarity,max_similarity
+625,625,0.5274854,0.07335032,0.35566035,0.8140569

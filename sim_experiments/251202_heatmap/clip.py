@@ -175,7 +175,6 @@ class CLIPScorer:
         print(f"Min similarity: {df['similarity'].min():.4f}")
         print(f"Max similarity: {df['similarity'].max():.4f}")
         
-        # Create summary DataFrame
         summary_data = {
             'total_pairs': [len(df)],
             'mean_similarity': [df['similarity'].mean()],

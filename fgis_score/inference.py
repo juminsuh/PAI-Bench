@@ -29,9 +29,9 @@ class Config:
         # Set your parameters here
         self.model = "resnet34"
         self.weight = "/data2/jiyoon/PAI-Bench/ckpts/resnet34.pt"
-        self.input = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/cropped/1"
-        self.colored_segmentation_output = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/features/fgis/colored_segmentation_output"
-        self.binary_mask_output = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/features/fgis/binary_mask_output"
+        self.input = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/cropped/2"
+        self.colored_segmentation_output = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/features/fgis/2/colored_segmentation_output"
+        self.binary_mask_output = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/features/fgis/2/binary_mask_output"
 
 
 def prepare_image(image: Image.Image, input_size: Tuple[int, int] = (512, 512)) -> torch.Tensor:

@@ -139,8 +139,8 @@ def extract_single_image_embeddings(images_dir, masks_dir, output_dir):
 
 if __name__ == "__main__":
     # config
-    images_dir = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/cropped/1"
-    masks_dir = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/features/fgis/1/binary_mask_output"
+    images_dir = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/cropped/2"
+    masks_dir = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/features/fgis/2/binary_mask_output"
     output_dir = f"/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/features/fgis/1/embs"
     os.makedirs(output_dir, exist_ok = True)
     
