@@ -12,6 +12,8 @@ import pandas as pd
 from tqdm import tqdm
 
 import torch
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 class CLIPScorer:
     def __init__(self):

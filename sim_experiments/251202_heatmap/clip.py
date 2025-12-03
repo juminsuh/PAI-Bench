@@ -31,10 +31,10 @@ class CLIPScorer:
         score = torch.cosine_similarity(feat1.unsqueeze(0), feat2.unsqueeze(0), dim=1)
         return score.item()
     
-
+    
     def load_folder_features(self, folder_path: str, feature_base_dir: str) -> Dict[str, torch.Tensor]:
         """
-        Load features for images 001.jpg - 025.jpg from a specific folder.
+        Load features for images 001.jpg - 025.jpg from a specific folder and make a lookup table for easy access.
         
         Args:
             folder_path: Path to image folder
@@ -63,7 +63,7 @@ class CLIPScorer:
         
         return features
 
-    # --- Calculate CLIP score and save results ----
+
     def calculate_cross_folder_similarities(self, folder1_path: str, folder2_path: str, 
                                           feature_dir1: str, feature_dir2: str, output_csv: str,
                                           output_heatmap: str = None):
@@ -81,21 +81,17 @@ class CLIPScorer:
         Returns:
             tuple: (df, summary) - DataFrame with results and summary statistics
         """
-
-        print("=" * 80)
-        print("CROSS-FOLDER SIMILARITY ANALYSIS")
-        print("=" * 80)
         
-        # load features
+        # --- Load features ---
         features1 = self.load_folder_features(folder1_path, feature_dir1)
         features2 = self.load_folder_features(folder2_path, feature_dir2)
         
         print(f"Loaded {len(features1)} features from folder 1")
         print(f"Loaded {len(features2)} features from folder 2")
         
-        # calculate sim score for each image pair
+        # --- Calculate sim score for each image pair ---
         all_results = []
-        similarities_for_heatmap = []
+        similarities = []
         image_numbers = []
         
         folder1_name = Path(folder1_path).name
@@ -105,36 +101,28 @@ class CLIPScorer:
             img_num = f"{i:03d}"
             
             if img_num in features1 and img_num in features2:
-                # Calculate similarity between corresponding images
                 similarity = self.clip_score_from_features(features1[img_num], features2[img_num])
-                similarities_for_heatmap.append(similarity)
+                similarities.append(similarity)
                 image_numbers.append(img_num)
-                
-                # Add result for each folder
+            
                 all_results.append({
                     'folder_pair': f"{folder1_name}_vs_{folder2_name}",
                     'image_number': img_num,
-                    'folder1': folder1_name,
-                    'folder2': folder2_name,
                     'similarity': similarity
                 })
             else:
                 print(f"Warning: Missing features for image {img_num}")
         
-        if not similarities_for_heatmap:
+        if not similarities:
             print("ERROR: No valid image pairs found!")
             return None, None
         
-        # Create similarity matrix (2 rows: one for each folder)
-        similarity_matrix = np.array([similarities_for_heatmap, similarities_for_heatmap])
-        
-        # Create heatmap
+        # --- Save heatmap ---
+        similarity_matrix = np.array([similarities, similarities])
+
         plt.figure(figsize=(15, 4))
-        
-        # Create labels
         folder_labels = [Path(folder1_path).name, Path(folder2_path).name]
         
-        # Create heatmap
         sns.heatmap(similarity_matrix, 
                    xticklabels=image_numbers,
                    yticklabels=folder_labels,
@@ -148,27 +136,22 @@ class CLIPScorer:
         plt.ylabel('Folder')
         plt.tight_layout()
         
-        # Save heatmap if path provided
         if output_heatmap:
             output_path = Path(output_heatmap)
             output_path.parent.mkdir(parents=True, exist_ok=True)
             plt.savefig(output_heatmap, dpi=300, bbox_inches='tight')
-            print(f"Heatmap saved to: {output_heatmap}")
-        
+            print(f"Heatmap saved to: {output_heatmap} ")
         plt.show()
         
-        # Save results to CSV
-        print("\n" + "=" * 80)
-        print("STEP 3: Saving Results")
-        print("=" * 80)
-        
+
+        # --- Save sim scores in csv ---
         if not all_results:
             print("ERROR: No results to save!")
             return None, None
         
         df = pd.DataFrame(all_results)
         
-        # Sort by image number
+        # sort by image number
         df = df.sort_values(['image_number'], ascending=True)
         
         output_path = Path(output_csv)
@@ -178,16 +161,14 @@ class CLIPScorer:
         print(f"Results saved to {output_csv}")
         print(f"Total image pairs processed: {len(all_results)}")
         
-        # Print summary statistics
-        print("\n" + "=" * 80)
-        print("SUMMARY STATISTICS")
-        print("=" * 80)
-        
+
+        # --- Save statistics in csv ---
+        # print summary statistics
         summary = df.groupby('folder_pair')['similarity'].agg(['count', 'mean', 'std', 'min', 'max'])
         summary.columns = ['num_pairs', 'mean_similarity', 'std_similarity', 'min_similarity', 'max_similarity']
         print(summary)
         
-        # Save summary
+        # save summary
         summary_csv = str(output_csv).replace('.csv', '_summary.csv')
         summary.to_csv(summary_csv)
         print(f"\nSummary saved to {summary_csv}")
@@ -205,22 +186,15 @@ def main():
     output_heatmap = "/home/jiyoon/PAI-Bench/sim_experiments/251202_positive_pairs/similarity_heatmap.png"
     
     
-    # calculate CLIP similarity
     scorer = CLIPScorer()
     df, summary = scorer.calculate_cross_folder_similarities(
         folder1_path, folder2_path, feature_dir1, feature_dir2, output_csv, output_heatmap
     )
     
-
-    # print statistics
     if df is not None:
-        print("\n" + "=" * 80)
         print("CROSS-FOLDER ANALYSIS COMPLETED!")
-        print("=" * 80)
     else:
-        print("\n" + "=" * 80)
         print("FAILED - No results generated")
-        print("=" * 80)
 
 if __name__ == "__main__":
     main()
