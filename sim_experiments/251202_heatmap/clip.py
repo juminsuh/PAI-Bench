@@ -38,14 +38,12 @@ class CLIPScorer:
         
         Args:
             folder_path: Path to image folder
-            feature_base_dir: Base directory containing pre-computed features
+            feature_base_dir: Directory containing pre-computed features (full path to the specific folder's features)
             
         Returns:
             Dictionary mapping image numbers to feature tensors
         """
-        folder_path = Path(folder_path)
-        folder_name = folder_path.name
-        feature_folder = Path(feature_base_dir) / folder_name
+        feature_folder = Path(feature_base_dir)
         
         features = {}
         
@@ -91,49 +89,55 @@ class CLIPScorer:
         
         # --- Calculate sim score for each image pair ---
         all_results = []
-        similarities = []
-        image_numbers = []
-        
         folder1_name = Path(folder1_path).name
         folder2_name = Path(folder2_path).name
         
-        for i in range(1, 26):
-            img_num = f"{i:03d}"
-            
-            if img_num in features1 and img_num in features2:
-                similarity = self.clip_score_from_features(features1[img_num], features2[img_num])
-                similarities.append(similarity)
-                image_numbers.append(img_num)
-            
-                all_results.append({
-                    'folder_pair': f"{folder1_name}_vs_{folder2_name}",
-                    'image_number': img_num,
-                    'similarity': similarity
-                })
-            else:
-                print(f"Warning: Missing features for image {img_num}")
+        # create 25x25 similarity matrix
+        similarity_matrix = np.zeros((25, 25))
+        valid_pairs = []
         
-        if not similarities:
+        for i in range(1, 26):  # folder2 images (y-axis)
+            for j in range(1, 26):  # folder1 images (x-axis)
+                img_num_folder1 = f"{j:03d}"
+                img_num_folder2 = f"{i:03d}"
+                
+                if img_num_folder1 in features1 and img_num_folder2 in features2:
+                    similarity = self.clip_score_from_features(features1[img_num_folder1], features2[img_num_folder2])
+                    similarity_matrix[i-1, j-1] = similarity
+                    valid_pairs.append((img_num_folder1, img_num_folder2, similarity))
+                    
+                    all_results.append({
+                        'folder1_image': f"{folder1_name}_{img_num_folder1}",
+                        'folder2_image': f"{folder2_name}_{img_num_folder2}",
+                        'similarity': similarity
+                    })
+                else:
+                    similarity_matrix[i-1, j-1] = np.nan
+        
+        if not valid_pairs:
             print("ERROR: No valid image pairs found!")
             return None, None
         
+        
         # --- Save heatmap ---
-        similarity_matrix = np.array([similarities, similarities])
-
-        plt.figure(figsize=(15, 4))
-        folder_labels = [Path(folder1_path).name, Path(folder2_path).name]
+        plt.figure(figsize=(20, 16))
+        
+        # Create labels
+        x_labels = [f"{i:03d}" for i in range(1, 26)]  # folder1 images
+        y_labels = [f"{i:03d}" for i in range(1, 26)]  # folder2 images
         
         sns.heatmap(similarity_matrix, 
-                   xticklabels=image_numbers,
-                   yticklabels=folder_labels,
+                   xticklabels=x_labels,
+                   yticklabels=y_labels,
                    annot=True, 
                    fmt='.3f',
                    cmap='viridis',
-                   cbar_kws={'label': 'CLIP Similarity'})
+                   cbar_kws={'label': 'CLIP Similarity'},
+                   mask=np.isnan(similarity_matrix))
         
-        plt.title(f'CLIP Similarities between Corresponding Images\n{folder_labels[0]} vs {folder_labels[1]}')
-        plt.xlabel('Image Number')
-        plt.ylabel('Folder')
+        plt.title(f'CLIP Similarities: {folder1_name} (x-axis) vs {folder2_name} (y-axis)')
+        plt.xlabel(f'{folder1_name} Image Numbers')
+        plt.ylabel(f'{folder2_name} Image Numbers')
         plt.tight_layout()
         
         if output_heatmap:
@@ -151,8 +155,8 @@ class CLIPScorer:
         
         df = pd.DataFrame(all_results)
         
-        # sort by image number
-        df = df.sort_values(['image_number'], ascending=True)
+        # sort by folder1_image and folder2_image
+        df = df.sort_values(['folder1_image', 'folder2_image'], ascending=True)
         
         output_path = Path(output_csv)
         output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -164,9 +168,22 @@ class CLIPScorer:
 
         # --- Save statistics in csv ---
         # print summary statistics
-        summary = df.groupby('folder_pair')['similarity'].agg(['count', 'mean', 'std', 'min', 'max'])
-        summary.columns = ['num_pairs', 'mean_similarity', 'std_similarity', 'min_similarity', 'max_similarity']
-        print(summary)
+        print("\nSimilarity Statistics:")
+        print(f"Total pairs: {len(df)}")
+        print(f"Mean similarity: {df['similarity'].mean():.4f}")
+        print(f"Std similarity: {df['similarity'].std():.4f}")
+        print(f"Min similarity: {df['similarity'].min():.4f}")
+        print(f"Max similarity: {df['similarity'].max():.4f}")
+        
+        # Create summary DataFrame
+        summary_data = {
+            'total_pairs': [len(df)],
+            'mean_similarity': [df['similarity'].mean()],
+            'std_similarity': [df['similarity'].std()],
+            'min_similarity': [df['similarity'].min()],
+            'max_similarity': [df['similarity'].max()]
+        }
+        summary = pd.DataFrame(summary_data)
         
         # save summary
         summary_csv = str(output_csv).replace('.csv', '_summary.csv')
@@ -178,12 +195,12 @@ class CLIPScorer:
 
 def main():
     # config 
-    folder1_path = "path/to/folder1"  
-    folder2_path = "path/to/folder2"  
-    feature_dir1 = "path/to/feature_dir1"  # path to pre-computed features for folder1
-    feature_dir2 = "path/to/feature_dir2"  # path to pre-computed features for folder2
-    output_csv = "/home/jiyoon/PAI-Bench/sim_experiments/251202_positive_pairs/cross_folder_similarities.csv"
-    output_heatmap = "/home/jiyoon/PAI-Bench/sim_experiments/251202_positive_pairs/similarity_heatmap.png"
+    folder1_path = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/1"  
+    folder2_path = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/2"  
+    feature_dir1 = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/features/clip/1"  # path to pre-computed features for folder1
+    feature_dir2 = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/features/clip/2"  # path to pre-computed features for folder2
+    output_csv = "/home/jiyoon/PAI-Bench/sim_experiments/251202_heatmap/results/clip_similarity.csv"
+    output_heatmap = "/home/jiyoon/PAI-Bench/sim_experiments/251202_heatmap/results/clip_heatmap.png"
     
     
     scorer = CLIPScorer()
