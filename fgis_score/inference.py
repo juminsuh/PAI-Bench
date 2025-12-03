@@ -1,3 +1,7 @@
+"""
+0. Code that make binary masks per region
+"""
+
 import os
 import logging
 from typing import List, Tuple, Optional
@@ -25,10 +29,9 @@ class Config:
         # Set your parameters here
         self.model = "resnet34"
         self.weight = "/data2/jiyoon/PAI-Bench/ckpts/resnet34.pt"
-        self.input = "/data2/jiyoon/PAI-Bench/data/crawled/imgs/TomHolland"
-        self.colored_segmentation_output = "/data2/jiyoon/PAI-Bench/results/fgis/colored_segmentation_output"
-        self.binary_mask_output = "/data2/jiyoon/PAI-Bench/results/fgis/binary_mask_output"
-        self.celeb = "TomHolland"
+        self.input = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/cropped/1"
+        self.colored_segmentation_output = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/features/fgis/colored_segmentation_output"
+        self.binary_mask_output = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/features/fgis/binary_mask_output"
 
 
 def prepare_image(image: Image.Image, input_size: Tuple[int, int] = (512, 512)) -> torch.Tensor:
@@ -111,10 +114,10 @@ def inference(params: Config) -> None:
     Args:
         params: Configuration object containing required parameters
     """
-    cs_path = os.path.join(params.colored_segmentation_output, params.celeb) # ./assets/colored_segmentation_output/BrunoMars
+    cs_path = params.colored_segmentation_output
     os.makedirs(cs_path, exist_ok=True) 
     
-    bm_path = os.path.join(params.binary_mask_output, params.celeb) # ./assets/binary_mask_output/BrunoMars
+    bm_path = params.binary_mask_output
     os.makedirs(bm_path, exist_ok=True)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
