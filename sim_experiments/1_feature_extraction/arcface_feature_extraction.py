@@ -144,8 +144,8 @@ class ArcFaceFeatureExtractor:
 
 def main():
     # config
-    input_folder = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/1"
-    output_folder = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/features/arcface"
+    input_folder = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/2"
+    output_folder = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/features/arcface/2"
     model_name = "antelopev2"
     device = "cuda"
     batch_mode = False  # Set to True for batch processing multiple folders
