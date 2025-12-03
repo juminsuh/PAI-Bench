@@ -1,5 +1,19 @@
 """
 1. Code that extracts region-wise dino emb and saves it as pkl file
+
+[PKL File Configuration]
+Each .pkl file (e.g., 001.pkl, 002.pkl) contains a single-row DataFrame with:
+
+  | Column   | Type          | Description                                 |
+  |----------|---------------|---------------------------------------------|
+  | image_id | str           | Image identifier (e.g., "001", "002")       |
+  | 0        | numpy.ndarray | DINO embedding for face region 0 (768-dim)  |
+  | 1        | numpy.ndarray | DINO embedding for face region 1 (768-dim)  |
+  | 2        | numpy.ndarray | DINO embedding for face region 2 (768-dim)  |
+  | ...      | ...           | ...                                         |
+  | 18       | numpy.ndarray | DINO embedding for face region 18 (768-dim) |
+
+The numeric columns correspond to face parsing regions in ATTRIBUTES
 """
 
 import os
@@ -56,36 +70,40 @@ def extract_region_embedding(original_image, binary_mask, processor, model, imag
 
 
 
-# extract DINO emb for all face regions
-def extract_embeddings_for_folder(images_dir, masks_dir, processor, model, device):
-    results = []
-    
-    # load image files 
+def extract_single_image_embeddings(images_dir, masks_dir, output_dir):
+    # load DINO
+    processor = AutoImageProcessor.from_pretrained('facebook/dinov2-base')
+    model = AutoModel.from_pretrained('facebook/dinov2-base')
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    model.to(device)
+    model.eval()
+    print(f"Model loaded on {device}")
+
+    # get image files 
     image_files = sorted([f for f in os.listdir(images_dir) 
                          if f.endswith(('.jpg', '.png', '.jpeg', 'JPG'))])
-    print(f"Processing folder: {len(image_files)} images")
+    print(f"Processing {len(image_files)} images individually...")
     
-
-    for image_file in tqdm(image_files, desc=f"Extracting embeddings"):
+    
+    # iterate each img file
+    for image_file in tqdm(image_files, desc="Processing images"):
         # img file path
-        image_number = os.path.splitext(image_file)[0] 
+        image_number = os.path.splitext(image_file)[0]  # e.g., "001"
         image_path = os.path.join(images_dir, image_file)
         original_image = Image.open(image_path).convert('RGB')
         
         # mask file path
         mask_image_dir = os.path.join(masks_dir, image_number)
-        mask_files = sorted([f for f in os.listdir(mask_image_dir) if f.endswith((".jpg", ".png", ".jpeg"))])
-        
         if not os.path.exists(mask_image_dir):
             print(f"Mask directory not found: {mask_image_dir}")
             continue
+            
+        mask_files = sorted([f for f in os.listdir(mask_image_dir) if f.endswith((".jpg", ".png", ".jpeg"))])
         
-        # save metadata
-        row_data = {
-            'image_id': image_number
-        }
+        # extract embeddings for this specific image
+        row_data = {'image_id': image_number}
         
-        # iterate each face region
+        # iterate each face region for this img
         for mask_file in mask_files:
             mask_path = os.path.join(mask_image_dir, mask_file) 
             number = os.path.splitext(mask_file)[0].split('_')[-1]
@@ -107,47 +125,16 @@ def extract_embeddings_for_folder(images_dir, masks_dir, processor, model, devic
                         device
                     )
                     row_data[number] = embedding
-        print(f"{image_number}.jpg completed!")
-        results.append(row_data)
+        
+        # save emb file
+        df_single = pd.DataFrame([row_data])
+        output_path = os.path.join(output_dir, f"{image_number}.pkl")
+        df_single.to_pickle(output_path)
+        print(f"Saved {image_number}.pkl")
     
-    df = pd.DataFrame(results)
-    
-    return df
+    print(f"All individual embeddings saved to {output_dir}")
+    print(f"Generated {len(image_files)} .pkl files")
 
-
-# extract emb from all imgs and binary masks in folder
-def extract_all_embeddings(images_dir, masks_dir, output_path="face_embeddings.pkl"):
-    # load DINO
-    processor = AutoImageProcessor.from_pretrained('facebook/dinov2-base')
-    model = AutoModel.from_pretrained('facebook/dinov2-base')
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model.to(device)
-    model.eval()
-    print(f"Model loaded on {device}")
-
-    # extract emb
-    df = extract_embeddings_for_folder(
-        images_dir, 
-        masks_dir,
-        processor, 
-        model, 
-        device
-    )
-    
-    print(f"\nDataFrame shape: {df.shape}")
-    print(f"Columns: {df.columns.tolist()}")
-    
-    # save embs
-    df.to_pickle(output_path)
-    print(f"Saved to {output_path}")
-    
-    # save metadata as .csv
-    meta_df = df[['image_id']].copy()
-    csv_path = output_path.replace('.pkl', '_meta.csv')
-    meta_df.to_csv(csv_path, index=False)
-    print(f"Metadata saved to {csv_path}")
-    
-    return df
 
 
 if __name__ == "__main__":
@@ -155,7 +142,7 @@ if __name__ == "__main__":
     images_dir = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/cropped/1"
     masks_dir = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/features/fgis/1/binary_mask_output"
     output_dir = f"/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/features/fgis/1/embs"
-    os.mkdirs(output_dir, exist_ok = True)
+    os.makedirs(output_dir, exist_ok = True)
     
     # Extract individual embeddings for each image file (001.pkl, 002.pkl, ..., 025.pkl)
     extract_single_image_embeddings(
@@ -163,4 +150,4 @@ if __name__ == "__main__":
         masks_dir, 
         output_dir
     )
-    print("🎉 INDIVIDUAL EXTRACTION COMPLETE!")
+
