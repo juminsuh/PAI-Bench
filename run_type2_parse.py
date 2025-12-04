@@ -5,17 +5,14 @@ import json
 from openai import OpenAI
 from dotenv import load_dotenv
 
-# --------------------------------
-# 1. API 설정
-# --------------------------------
+
+# --- API ---
 load_dotenv('.env', override=True)
 API_KEY = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=API_KEY)
 
 
-# --------------------------------
-# 2. PROMPT
-# --------------------------------
+# --- PROMPT ---
 SYSTEM_PROMPT = f"""
 You are a powerful language parser capable of accurately analyzing prompts, identifying which factors they describe, and rewriting them into a clean, concise visual description.
 """
@@ -64,12 +61,24 @@ These are some examples which complete given task.
 Now analyze the following prompt: {description}
 """
 
+# --- Utils ---
+def load_text(json_path):
+    '''
+    input: jsonl file path
+    output: 'text' list of each object in jsonl file
+    '''
+    ids = []
+    texts = []
+    with open(json_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+        for item in data:
+            ids.append(item['id'])
+            texts.append(item['prompt'])
+    return ids, texts
 
-# --------------------------------
-# 3. Type2 Parser 실행 함수
-# --------------------------------
-    
-def run_type2_mcq(text):
+
+# --- Type2_Parse ---
+def run_type2_parse(text):
     formatted_prompt = USER_PROMPT.format(description=text)
     
     response = client.chat.completions.create(
@@ -90,27 +99,11 @@ def run_type2_mcq(text):
     return response.choices[0].message.content.strip()
 
 
-# -------------------------------------
-# 4. batch evaluation for type2 parser
-# -------------------------------------
 
-def load_text(json_path):
+# --- Run Type2 Parser ---
+def main(json_path, output_path):
     '''
-    input: jsonl 파일 경로 
-    output: jsonl의 각 객체의 'text' list
-    '''
-    ids = []
-    texts = []
-    with open(json_path, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-        for item in data:
-            ids.append(item['id'])
-            texts.append(item['prompt'])
-    return ids, texts
-
-def main(json_path):
-    '''
-    input: json 파일 경로
+    input: json file path
     output: json file 
     '''
     ids, texts = load_text(json_path=json_path)
@@ -127,7 +120,7 @@ def main(json_path):
         print(f"📌 Parsing {id}...")
         
         try:
-            parsed_out = run_type2_mcq(text=text)
+            parsed_out = run_type2_parse(text=text)
             
             factors = re.search(factors_pattern, parsed_out).group(1)
             factor_list = [x.strip() for x in factors.split(",")]
@@ -144,13 +137,25 @@ def main(json_path):
         except Exception as e:
             print(f"[{id}] ERROR: {e}")
     
-    return results
+    output_dir = os.path.dirname(output_path)
+    if output_dir and not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    
+    # Save results
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(results, f, indent=2, ensure_ascii=False)
+    
+    print(f"Done! Saved → {output_path}")
 
-# --------------------------------
-# 5. save results
-# --------------------------------
+
 if __name__ == '__main__':
+
     json_path="./assets/generation_prompts.json"
     parsed=main(json_path=json_path)
     with open("./results/type2_parsed_results.json", "w", encoding="utf-8") as f:
         json.dump(parsed, f, indent=2, ensure_ascii=False)
+
+    json_path = "/data2/jiyoon/PAI-Bench/data/datasets_final/generation_prompts.json"
+    output_path = "/data2/jiyoon/PAI-Bench/data/datasets_final/type2_parsed_results.json"
+
+    main(json_path, output_path)
