@@ -1,9 +1,11 @@
-from metric import *
+from utils import *
 
 def main():
 
-    path = "./preliminary/mcq/neg.json"
-    # path = "./preliminary/neg/fgis_similarity.csv"
+    # path = "./preliminary/mcq/neg.json"
+    emotion = "neg"
+    metric = "fgis"
+    path = f"./preliminary/normalized/{emotion}/{metric}_similarity.csv"
 
     filename = os.path.basename(path)         
     ext = os.path.splitext(filename)[1]

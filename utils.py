@@ -20,6 +20,19 @@ def load_json(json_path):
                 
     return choices, num_factors
 
+def normalize(emotion, metric):
+    
+    df = pd.read_csv(f'./preliminary/{emotion}/{metric}_similarity.csv')
+
+    # min-max scaling -> fit range [0, 1]
+    min_val = df['similarity'].min()
+    max_val = df['similarity'].max()
+
+    df['similarity_normalized'] = (df['similarity'] - min_val) / (max_val - min_val)
+    df = df.drop('similarity', axis=1)
+
+    df.to_csv(f'./preliminary/normalized/{emotion}/{metric}_similarity.csv', index=False)
+
 def compute_avg(csv_path):
     df = pd.read_csv(csv_path)
     avg = df['similarity'].mean()
