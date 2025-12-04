@@ -150,7 +150,7 @@ def main(json_path):
 # 5. save results
 # --------------------------------
 if __name__ == '__main__':
-    json_path="./generation_prompts.json"
+    json_path="./assets/generation_prompts.json"
     parsed=main(json_path=json_path)
-    with open("./type2_parsed_results.json", "w", encoding="utf-8") as f:
+    with open("./results/type2_parsed_results.json", "w", encoding="utf-8") as f:
         json.dump(parsed, f, indent=2, ensure_ascii=False)
