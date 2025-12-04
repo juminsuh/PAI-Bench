@@ -26,10 +26,10 @@
   {
     "id": "004",
     "factor": [
-      "action",
+      "emotion",
       "accessories"
     ],
-    "description": "woman blinking and wearing a black hat"
+    "description": "woman smiling and wearing a black hat"
   },
   {
     "id": "005",
@@ -133,7 +133,7 @@
       "emotion",
       "clothes"
     ],
-    "description": "man raising eyebrows and wearing a yellow shirt"
+    "description": "man raising eyebrows wearing a yellow shirt"
   },
   {
     "id": "018",
@@ -173,7 +173,7 @@
       "emotion",
       "clothes"
     ],
-    "description": "girl laughing in a purple wizard outfit"
+    "description": "girl laughing and wearing a purple wizard outfit"
   },
   {
     "id": "023",
@@ -186,10 +186,10 @@
   {
     "id": "024",
     "factor": [
-      "action",
+      "emotion",
       "hairstyle"
     ],
-    "description": "woman blinking with short black hair"
+    "description": "woman crying with short black hair"
   },
   {
     "id": "025",
@@ -229,7 +229,7 @@
       "emotion",
       "accessories"
     ],
-    "description": "woman not smiling and wearing a santa hat"
+    "description": "girl not smiling and wearing a santa hat"
   },
   {
     "id": "030",
@@ -293,7 +293,7 @@
       "emotion",
       "hairstyle"
     ],
-    "description": "man smiling with black hair"
+    "description": "boy smiling with black hair"
   },
   {
     "id": "038",
@@ -301,7 +301,7 @@
       "emotion",
       "clothes"
     ],
-    "description": "man raising eyebrows wearing a black T-shirt"
+    "description": "boy raising eyebrows wearing a black T-shirt"
   },
   {
     "id": "039",
@@ -325,7 +325,7 @@
       "emotion",
       "clothes"
     ],
-    "description": "man not smiling and wearing a firefighter outfit"
+    "description": "man not smiling in a firefighter outfit"
   },
   {
     "id": "042",
@@ -341,7 +341,7 @@
       "action",
       "clothes"
     ],
-    "description": "man eating cookies and wearing a blue hoodie"
+    "description": "boy eating cookies and wearing a blue hoodie"
   },
   {
     "id": "044",
@@ -373,15 +373,15 @@
       "emotion",
       "clothes"
     ],
-    "description": "man smiling in a purple wizard outfit"
+    "description": "boy smiling in a purple wizard outfit"
   },
   {
     "id": "048",
     "factor": [
-      "action",
+      "emotion",
       "accessories"
     ],
-    "description": "man blinking and wearing headphones"
+    "description": "man not smiling and wearing headphones"
   },
   {
     "id": "049",
