@@ -1,5 +1,6 @@
 """
 ArcFace scorer for calculating reference-based similarities using pre-computed features
+Fixed to properly detect actual image filenames from feature files
 """
 
 from pathlib import Path
@@ -10,192 +11,188 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 class ArcFaceScorer:
+    # --- Utils ---
+    # initialize scorer without loading the model since we only use pre-computed features
     def __init__(self):
-        """Initialize scorer without loading the model since we only use pre-computed features"""
         pass
     
+    # load a single feature array from disk
     def load_feature(self, feature_path: Path) -> np.ndarray:
-        """Load a single feature array from disk"""
         with open(feature_path, 'rb') as f:
             return pickle.load(f)
     
-    def get_all_images_from_features(self, feature_dir: str, crawled_path: str) -> Dict[str, List[tuple]]:
-        """
-        Get all image paths by scanning the feature directory and matching with actual image files.
-        
-        Args:
-            feature_dir: Directory containing feature files
-            crawled_path: Path to original crawled directory
-        
-        Returns:
-            Dictionary mapping folder names to lists of (image_path, feature_path) tuples
-        """
-        feature_dir_path = Path(feature_dir)
-        crawled_dir_path = Path(crawled_path)
-        
-        if not feature_dir_path.exists():
-            raise FileNotFoundError(f"Feature directory not found: {feature_dir}")
-        
-        folder_images = {}
-        
-        # Scan feature directory for folders
-        for folder_path in sorted(feature_dir_path.iterdir()):
-            if not folder_path.is_dir():
-                continue
-            
-            folder_name = folder_path.name
-            image_feature_pairs = []
-            
-            # Get all .pkl files in this folder
-            for feature_file in sorted(folder_path.glob('*.pkl')):
-                # Get the base name without extension
-                base_name = feature_file.stem
-                
-                # Find corresponding image file in the crawled directory
-                crawled_folder = crawled_dir_path / folder_name
-                if crawled_folder.exists():
-                    # Try common image extensions
-                    for ext in ['.jpg', '.jpeg', '.png', '.bmp', '.webp', '.tiff']:
-                        image_file = crawled_folder / f"{base_name}{ext}"
-                        if image_file.exists():
-                            image_feature_pairs.append((str(image_file), str(feature_file)))
-                            break
-            
-            if image_feature_pairs:
-                folder_images[folder_name] = image_feature_pairs
-                print(f"  Found {len(image_feature_pairs)} image-feature pairs in {folder_name}")
-        
-        return folder_images
-    
+    # calculate cosine sim between two features
     def arcface_score_from_features(self, feat1: np.ndarray, feat2: np.ndarray) -> float:
-        """Calculate cosine similarity between two feature vectors
-        Note: ArcFace normed_embedding is already normalized, so dot product = cosine similarity
-        """
-        score = np.dot(feat1, feat2)
-        return float(score)
+        dot_product = np.dot(feat1, feat2)
+        norm1 = np.linalg.norm(feat1)
+        norm2 = np.linalg.norm(feat2)
+        
+        if abs(norm1 - 1.0) < 1e-6 and abs(norm2 - 1.0) < 1e-6:
+            # if vectors are alr normalized, use dot product directly
+            similarity = dot_product
+        else:
+            similarity = dot_product / (norm1 * norm2)
+        
+        return float(similarity)
     
-    def calculate_reference_based_similarities(self, crawled_path: str, output_csv: str,
-                                              feature_dir: str):
+    
+    def load_folder_features(self, folder_path: str, feature_base_dir: str) -> Dict[str, np.ndarray]:
         """
-        Calculate ArcFace similarity using each image in a folder as reference.
-        For each reference image, calculate average similarity to all other images in the same folder.
+        Load features for images 001.jpg - 025.jpg from a specific folder and make a lookup table for easy access.
         
         Args:
-            crawled_path: Path to directory containing celebrity folders
-            output_csv: Path to save CSV results
-            feature_dir: Directory containing pre-computed feature files
+            folder_path: Path to image folder
+            feature_base_dir: Directory containing pre-computed features (full path to the specific folder's features)
+            
+        Returns:
+            Dictionary mapping image numbers to feature arrays
         """
-        # Get all images from feature directory
-        print("=" * 80)
-        print("STEP 1: Scanning Feature Directory")
-        print("=" * 80)
-        folder_images = self.get_all_images_from_features(feature_dir, crawled_path)
+        feature_folder = Path(feature_base_dir)
         
-        folder_names = sorted(folder_images.keys())
+        features = {}
         
-        print(f"\nFound {len(folder_names)} folders with features")
-        
-        if not folder_names:
-            print("ERROR: No folders with features found!")
-            return None, None
-        
-        # Collect results for all reference images
-        all_results = []
-        
-        print("\n" + "=" * 80)
-        print("STEP 2: Calculating Reference-Based Similarities")
-        print("=" * 80)
-        
-        for folder_name in folder_names:
-            print(f"\nProcessing folder: {folder_name}")
-            image_feature_pairs = folder_images[folder_name]
+        for i in range(1, 26):  # 001.jpg to 025.jpg
+            img_num = f"{i:03d}"
+            feature_file = feature_folder / f"{img_num}.pkl"
             
-            if len(image_feature_pairs) < 2:
-                print(f"Warning: Folder {folder_name} has less than 2 images, skipping...")
-                continue
-            
-            # Load all features for this folder
-            print(f"  Loading {len(image_feature_pairs)} features...")
-            features = {}
-            for img_path, feat_path in image_feature_pairs:
+            if feature_file.exists():
                 try:
-                    features[img_path] = self.load_feature(Path(feat_path))
+                    features[img_num] = self.load_feature(feature_file)
                 except Exception as e:
-                    print(f"  Error loading feature {feat_path}: {e}")
-                    continue
+                    print(f"Error loading feature {feature_file}: {e}")
+            else:
+                print(f"Warning: Feature file not found: {feature_file}")
+        
+        return features
+
+
+    def calculate_cross_folder_similarities(self, folder1_path: str, folder2_path: str, 
+                                          feature_dir1: str, feature_dir2: str, output_csv: str,
+                                          output_heatmap: str = None):
+        """
+        Calculate similarities between corresponding images from two folders and create heatmap.
+        
+        Args:
+            folder1_path: Path to first image folder
+            folder2_path: Path to second image folder
+            feature_dir1: Directory containing pre-computed features for folder1
+            feature_dir2: Directory containing pre-computed features for folder2
+            output_csv: Path to save CSV results
+            output_heatmap: Path to save heatmap image (optional)
             
-            if len(features) < 2:
-                print(f"Warning: Could not load enough features for folder {folder_name}, skipping...")
-                continue
-            
-            print(f"  Successfully loaded {len(features)} features")
-            
-            image_paths = list(features.keys())
-            
-            # Use each image as reference
-            for ref_path in tqdm(image_paths, desc=f"  Processing references in {folder_name}"):
-                ref_feature = features[ref_path]
-                similarities = []
+        Returns:
+            tuple: (df, summary) - DataFrame with results and summary statistics
+        """
+        
+        # --- Load features ---
+        features1 = self.load_folder_features(folder1_path, feature_dir1)
+        features2 = self.load_folder_features(folder2_path, feature_dir2)
+        
+        print(f"Loaded {len(features1)} features from folder 1")
+        print(f"Loaded {len(features2)} features from folder 2")
+        
+        # --- Calculate sim score for each image pair ---
+        all_results = []
+        folder1_name = Path(folder1_path).name
+        folder2_name = Path(folder2_path).name
+        
+        # create 25x25 similarity matrix
+        similarity_matrix = np.zeros((25, 25))
+        valid_pairs = []
+        
+        for i in range(1, 26):  # folder2 images (y-axis)
+            for j in range(1, 26):  # folder1 images (x-axis)
+                img_num_folder1 = f"{j:03d}"
+                img_num_folder2 = f"{i:03d}"
                 
-                # Calculate similarity to all other images in the folder
-                for other_path in image_paths:
-                    if other_path == ref_path:  # Skip self-comparison
-                        continue
-                    
-                    other_feature = features[other_path]
-                    similarity = self.arcface_score_from_features(ref_feature, other_feature)
-                    similarities.append(similarity)
-                
-                # Calculate average similarity for this reference
-                if similarities:
-                    avg_similarity = np.mean(similarities)
-                    min_similarity = np.min(similarities)
-                    max_similarity = np.max(similarities)
-                    std_similarity = np.std(similarities)
+                if img_num_folder1 in features1 and img_num_folder2 in features2:
+                    similarity = self.arcface_score_from_features(features1[img_num_folder1], features2[img_num_folder2])
+                    similarity_matrix[i-1, j-1] = similarity
+                    valid_pairs.append((img_num_folder1, img_num_folder2, similarity))
                     
                     all_results.append({
-                        'folder': folder_name,
-                        'reference_image': Path(ref_path).name,
-                        'reference_path': ref_path,
-                        'num_comparisons': len(similarities),
-                        'avg_similarity': avg_similarity,
-                        'min_similarity': min_similarity,
-                        'max_similarity': max_similarity,
-                        'std_similarity': std_similarity
+                        'folder1_image': f"{folder1_name}_{img_num_folder1}",
+                        'folder2_image': f"{folder2_name}_{img_num_folder2}",
+                        'similarity': similarity
                     })
+                else:
+                    similarity_matrix[i-1, j-1] = np.nan
         
-        # Save results to CSV
-        print("\n" + "=" * 80)
-        print("STEP 3: Saving Results")
-        print("=" * 80)
+        if not valid_pairs:
+            print("ERROR: No valid image pairs found!")
+            return None, None
         
+        
+        # --- Save heatmap ---
+        plt.figure(figsize=(20, 16))
+        
+        # Create labels
+        x_labels = [f"{i:03d}" for i in range(1, 26)]  # folder1 images
+        y_labels = [f"{i:03d}" for i in range(1, 26)]  # folder2 images
+        
+        sns.heatmap(similarity_matrix, 
+                   xticklabels=x_labels,
+                   yticklabels=y_labels,
+                   annot=True, 
+                   fmt='.3f',
+                   cmap='viridis',
+                   cbar_kws={'label': 'ArcFace Similarity'},
+                   mask=np.isnan(similarity_matrix))
+        
+        plt.title(f'ArcFace Similarities: {folder1_name} (x-axis) vs {folder2_name} (y-axis)')
+        plt.xlabel(f'{folder1_name} Image Numbers')
+        plt.ylabel(f'{folder2_name} Image Numbers')
+        plt.tight_layout()
+        
+        if output_heatmap:
+            output_path = Path(output_heatmap)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            plt.savefig(output_heatmap, dpi=300, bbox_inches='tight')
+            print(f"Heatmap saved to: {output_heatmap} ")
+        plt.show()
+        
+
+        # --- Save sim scores in csv ---
         if not all_results:
-            print("ERROR: No results to save! All folders were skipped.")
+            print("ERROR: No results to save!")
             return None, None
         
         df = pd.DataFrame(all_results)
         
-        # Sort by folder and avg_similarity
-        df = df.sort_values(['folder', 'avg_similarity'], ascending=[True, False])
+        # sort by folder1_image and folder2_image
+        df = df.sort_values(['folder1_image', 'folder2_image'], ascending=True)
         
         output_path = Path(output_csv)
         output_path.parent.mkdir(parents=True, exist_ok=True)
         df.to_csv(output_csv, index=False)
         
         print(f"Results saved to {output_csv}")
-        print(f"Total reference images processed: {len(all_results)}")
+        print(f"Total image pairs processed: {len(all_results)}")
         
-        # Print summary statistics per folder
-        print("\n" + "=" * 80)
-        print("SUMMARY STATISTICS PER FOLDER")
-        print("=" * 80)
+
+        # --- Save statistics in csv ---
+        # print summary statistics
+        print("\nSimilarity Statistics:")
+        print(f"Total pairs: {len(df)}")
+        print(f"Mean similarity: {df['similarity'].mean():.4f}")
+        print(f"Std similarity: {df['similarity'].std():.4f}")
+        print(f"Min similarity: {df['similarity'].min():.4f}")
+        print(f"Max similarity: {df['similarity'].max():.4f}")
         
-        summary = df.groupby('folder')['avg_similarity'].agg(['count', 'mean', 'std', 'min', 'max'])
-        summary.columns = ['num_images', 'mean_avg_sim', 'std_avg_sim', 'min_avg_sim', 'max_avg_sim']
-        print(summary)
+        summary_data = {
+            'total_pairs': [len(df)],
+            'mean_similarity': [df['similarity'].mean()],
+            'std_similarity': [df['similarity'].std()],
+            'min_similarity': [df['similarity'].min()],
+            'max_similarity': [df['similarity'].max()]
+        }
+        summary = pd.DataFrame(summary_data)
         
-        # Save summary
+        # save summary
         summary_csv = str(output_csv).replace('.csv', '_summary.csv')
         summary.to_csv(summary_csv)
         print(f"\nSummary saved to {summary_csv}")
@@ -204,26 +201,24 @@ class ArcFaceScorer:
 
 
 def main():
-    # Configuration
-    crawled_path = "/data2/jiyoon/PAI-Bench/data/crawled/imgs"
-    output_csv = "/home/jiyoon/PAI_Bench/utils/reference_base/arcface_reference_similarities.csv"
-    feature_dir = "/data2/jiyoon/PAI-Bench/data/crawled/arcface_features"  # Directory with pre-computed features
+    # config 
+    folder1_path = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/1"  
+    folder2_path = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/2"  
+    feature_dir1 = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/features/arcface/1"  # path to pre-computed features for folder1
+    feature_dir2 = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/features/arcface/2"  # path to pre-computed features for folder2
+    output_csv = "/home/jiyoon/PAI-Bench/sim_experiments/251202_heatmap/results/arcface_similarity.csv"
+    output_heatmap = "/home/jiyoon/PAI-Bench/sim_experiments/251202_heatmap/results/arcface_heatmap.png"
     
-    # Create scorer and calculate reference-based similarities
+    
     scorer = ArcFaceScorer()
-    df, summary = scorer.calculate_reference_based_similarities(
-        crawled_path, output_csv, feature_dir=feature_dir
+    df, summary = scorer.calculate_cross_folder_similarities(
+        folder1_path, folder2_path, feature_dir1, feature_dir2, output_csv, output_heatmap
     )
     
     if df is not None:
-        print("\n" + "=" * 80)
-        print("DONE!")
-        print("=" * 80)
+        print("CROSS-FOLDER ANALYSIS COMPLETED!")
     else:
-        print("\n" + "=" * 80)
         print("FAILED - No results generated")
-        print("=" * 80)
-
 
 if __name__ == "__main__":
     main()
