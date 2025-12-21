@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 
 # --- API ---
-load_dotenv()
+load_dotenv('.env', override=True)
 API_KEY = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=API_KEY)
 
@@ -26,15 +26,23 @@ Your task is to evaluate whether the description correctly matches the visual co
 
 
 [Rubrics]
-1.  Evaluate the image strictly based on the factors included in {factors}.  Only the listed factors should influence your decision.
-2.  Ignore any attributes not included in the factor list. If a factor is not included in {factors}, you must not judge it.
+1.  Factors may include the following elements:
+	• action
+	• hairstyle 
+	• emotion (e.g., smiling, not smiling, frowning)
+	• makeup
+	• clothes
+	• accessories (e.g., hat, earrings)
+2.  Evaluate the image based on the factors included in {factors}.  Only the listed factors should influence your decision.
+3.  Ignore any attributes not included in the factor list. If a factor is not included in {factors}, you must not judge it.
 
+ 
 [Actions]
 1. Compare the description **with the image**, evaluating only the factors listed in {factors}. Do not make judgments on any attributes outside these factors.
 2. Choose the correct answer from the Options section:
 	• If all provided factors match the image → select the option that starts with "Yes".
 	• If any provided factor does not match the image → select one or more options that start with "No" corresponding to the mismatched factor(s).
-  • You may select multiple options, but **you must not choose an option starting with "Yes" together with any option starting with "No."**
+    • You may select multiple options, but **you must not choose an option starting with "Yes" together with any option starting with "No."**
 3. Return **only the option number(s)**:
 	• If only one option is selected → return a single number (e.g., 1).
 	• If more than one options are selected  → return all option numbers separated by commas (e.g., 2, 4, 5)
@@ -67,7 +75,7 @@ VALID_EXT = [".jpg", ".jpeg", ".png"]
 def generate_options(factors):
     options = """1. Yes, the description accurately describes the image content in terms of all provided factors.\n"""
     for idx, factor in enumerate(factors):
-        options += f"{idx + 2}. No, the {factor} of the person does not match the description.\n"
+        options += f"{idx + 2}. No, the {factor} of the image does not match the description.\n"
     return options
 
 
@@ -140,7 +148,7 @@ def main(gen_folder_path, parsed_data_path, output_path):
         options = generate_options(factors)
         print(options)
 
-        print(f"[{idx}] Evaluating...")
+        print(f"➡️ [{idx}] Evaluating...")
 
         try:
             mcq_out = run_type2_mcq(gen_path, factors, description, options)
@@ -148,7 +156,8 @@ def main(gen_folder_path, parsed_data_path, output_path):
                 "result": mcq_out,
                 "num_factors": len(factors)
             }
-            print(results[idx])
+            print("✅", results[idx])
+            print()
 
         except Exception as e:
             print(f"[{idx}] ERROR: {e}")
@@ -186,10 +195,8 @@ def main(gen_folder_path, parsed_data_path, output_path):
     print(f"Done! Saved → {output_path}")
 
 
-
-
 if __name__ == "__main__":
-    gen_folder_path = "/data2/jiyoon/PAI-Bench/data/datasets_final/generation/generated_gemini2.5Flash"
-    parsed_data_path = "/home/jiyoon/PAI-Bench/results/type2_parsed_results.json"
-    output_path = "./results/type2_mcq_gemini.json"
+    gen_folder_path = "./generation/generated_gpt5.1"
+    parsed_data_path = "./results/parsed_results.json"
+    output_path = "./results/type2/type2_mcq_gpt5.1.json"
     main(gen_folder_path, parsed_data_path, output_path)
