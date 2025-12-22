@@ -145,8 +145,8 @@ class CLIPFeatureExtractor:
 
 def main():
     # Configuration
-    input_folder = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/cropped/2"
-    output_folder = "/data2/jiyoon/PAI-Bench/data/datasets_final/positive_pair/features/clip/2"
+    input_folder = "/data2/jiyoon/PAI-Bench/data/251222/cropped/generated_gemini2.5Flash"
+    output_folder = "/data2/jiyoon/PAI-Bench/data/251222/img_features/clip"
     model_name = "ViT-B-32"
     pretrained = "openai"
     device = "cuda"
