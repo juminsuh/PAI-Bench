@@ -14,8 +14,8 @@ import os
 model_path = hf_hub_download(repo_id="arnabdhar/YOLOv8-Face-Detection", filename="model.pt")
 model = YOLO(model_path)
 
-folder_path = "/data2/jiyoon/PAI-Bench/data/datasets_final/generation/generated_gemini2.5Flash"
-output_dir = "/data2/jiyoon/PAI-Bench/data/251222/cropped/generated_gemini2.5Flash"
+folder_path = "/data2/jiyoon/PAI-Bench/data/datasets_final/generation/generated_gpt5.1"
+output_dir = "/data2/jiyoon/PAI-Bench/data/251222/cropped/generated_gpt5.1"
 os.makedirs(output_dir, exist_ok=True)
 
 image_extensions = ('.jpg', '.jpeg', '.png', '.bmp', '.tiff', '.webp')

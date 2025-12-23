@@ -1,0 +1,78 @@
+{
+  "blip_Gemini2.5Flash": [
+    {
+      "id": "001",
+      "prompt": "a woman smiling and wearing a white T-shirt",
+      "score": 0.027738241478800774
+    },
+    {
+      "id": "006",
+      "prompt": "a woman holding a glass of wine and wearing a black dress",
+      "score": 0.0012460706057026982
+    },
+    {
+      "id": "012",
+      "prompt": "a man holding a glass of wine and wearing a white suit",
+      "score": 0.008793427608907223
+    },
+    {
+      "id": "016",
+      "prompt": "a man eating ice-cream and wearing a white T-shirt",
+      "score": 0.0011743003269657493
+    },
+    {
+      "id": "024",
+      "prompt": "a woman crying with short black hair",
+      "score": 0.25810492038726807
+    },
+    {
+      "id": "032",
+      "prompt": "a woman surprised and wearing a blue hoodie",
+      "score": 0.3066043555736542
+    },
+    {
+      "id": "034",
+      "prompt": "a woman cooking a meal and wearing a chef outfit",
+      "score": 0.06322021037340164
+    },
+    {
+      "id": "044",
+      "prompt": "a man eating ice-cream with blond hair",
+      "score": 0.0009846104076132178
+    },
+    {
+      "id": "045",
+      "prompt": "a man not smiling wearing a santa hat",
+      "score": 0.0003448975912760943
+    },
+    {
+      "id": "048",
+      "prompt": "a man not smiling and wearing headphones",
+      "score": 0.050385672599077225
+    }
+  ],
+  "clip_GPT5.1": [
+    {
+      "id": "006",
+      "prompt": "a woman holding a glass of wine and wearing a black dress",
+      "score": 0.18020784854888916
+    },
+    {
+      "id": "012",
+      "prompt": "a man holding a glass of wine and wearing a white suit",
+      "score": 0.17084568738937378
+    },
+    {
+      "id": "034",
+      "prompt": "a woman cooking a meal and wearing a chef outfit",
+      "score": 0.17534181475639343
+    }
+  ],
+  "clip_Gemini2.5Flash": [
+    {
+      "id": "006",
+      "prompt": "a woman holding a glass of wine and wearing a black dress",
+      "score": 0.16932350397109985
+    }
+  ]
+}

@@ -21,7 +21,19 @@ def load_features(feature_path: str) -> torch.Tensor:
         return None
 
 
-def calculate_clip_scores_from_features(image_features_dir: str, text_features_dir: str, output_path: str = "clip_scores_results.json"):
+def load_prompts(json_path):
+    """Load prompts from json file"""
+    with open(json_path, "r") as f:
+        data = json.load(f)
+
+    prompt_dict = {}
+    for item in data:
+        prompt_dict[item["id"]] = item["prompt"]
+
+    return prompt_dict
+
+
+def calculate_clip_scores_from_features(image_features_dir: str, text_features_dir: str, prompt_json: str, output_path: str = "clip_scores_results.json"):
     """Calculate CLIP scores from pre-extracted features"""
     
     image_dir = Path(image_features_dir)
@@ -31,6 +43,9 @@ def calculate_clip_scores_from_features(image_features_dir: str, text_features_d
         raise FileNotFoundError(f"Image features directory not found: {image_features_dir}")
     if not text_dir.exists():
         raise FileNotFoundError(f"Text features directory not found: {text_features_dir}")
+    
+    # Load prompts
+    prompt_dict = load_prompts(prompt_json)
     
     image_files = sorted(list(image_dir.glob("*.pkl")))
     text_files = list(text_dir.glob("*.pkl"))
@@ -65,7 +80,10 @@ def calculate_clip_scores_from_features(image_features_dir: str, text_features_d
                 text_features = text_features.numpy()
             
             clip_score = np.dot(img_features, text_features)
-            scores[img_id] = float(clip_score)
+            scores[img_id] = {
+                "prompt": prompt_dict.get(img_id, "Unknown prompt"),
+                "score": float(clip_score)
+            }
             valid_pairs += 1
             
         except Exception as e:
@@ -73,7 +91,7 @@ def calculate_clip_scores_from_features(image_features_dir: str, text_features_d
             failed_pairs.append(img_id)
     
     if scores:
-        score_values = list(scores.values())
+        score_values = [item["score"] for item in scores.values()]
         mean_score = np.mean(score_values)
         std_score = np.std(score_values)
         min_score = np.min(score_values)
@@ -112,11 +130,12 @@ def calculate_clip_scores_from_features(image_features_dir: str, text_features_d
 
 
 def main():
-    image_features_dir = "/data2/jiyoon/PAI-Bench/data/251222/img_features/clip"
+    image_features_dir = "/data2/jiyoon/PAI-Bench/data/251222/img_features/clip_gpt5.1"
     text_features_dir = "/data2/jiyoon/PAI-Bench/data/251222/text_features/clip"
-    output_path = "/home/jiyoon/PAI-Bench/prompt_alignment/251222_textimg/results/clip.json"
+    prompt_json = "/data2/jiyoon/PAI-Bench/data/datasets_final/generation_prompts.json"
+    output_path = "/home/jiyoon/PAI-Bench/2_prompt_alignment/251222_ITM/results/clip_GPT5.1.json"
     
-    calculate_clip_scores_from_features(image_features_dir, text_features_dir, output_path)
+    calculate_clip_scores_from_features(image_features_dir, text_features_dir, prompt_json, output_path)
 
 
 if __name__ == "__main__":

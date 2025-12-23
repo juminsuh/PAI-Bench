@@ -1,0 +1,213 @@
+{
+  "scores": {
+    "001": {
+      "prompt": "a woman smiling and wearing a white T-shirt",
+      "score": 0.26528018712997437
+    },
+    "002": {
+      "prompt": "a woman laughing with long blond hair",
+      "score": 0.2984396815299988
+    },
+    "003": {
+      "prompt": "a woman smiling with curly long dark brown hair",
+      "score": 0.2923312783241272
+    },
+    "004": {
+      "prompt": "a woman smiling and wearing a black hat",
+      "score": 0.2806836664676666
+    },
+    "005": {
+      "prompt": "a woman surprised and wearing a chef outfit",
+      "score": 0.2593664824962616
+    },
+    "006": {
+      "prompt": "a woman holding a glass of wine and wearing a black dress",
+      "score": 0.16932350397109985
+    },
+    "007": {
+      "prompt": "a woman eating ice-cream with long black hair",
+      "score": 0.33450499176979065
+    },
+    "008": {
+      "prompt": "a woman smiling and in a chef outfit",
+      "score": 0.25069093704223633
+    },
+    "009": {
+      "prompt": "a woman crying with long black hair",
+      "score": 0.30468451976776123
+    },
+    "010": {
+      "prompt": "a woman smiling and wearing headphones",
+      "score": 0.28770017623901367
+    },
+    "011": {
+      "prompt": "a man smiling and wearing a chef outfit",
+      "score": 0.26610666513442993
+    },
+    "012": {
+      "prompt": "a man holding a glass of wine and wearing a white suit",
+      "score": 0.18290340900421143
+    },
+    "013": {
+      "prompt": "a man smiling and wearing a black hat",
+      "score": 0.2973119020462036
+    },
+    "014": {
+      "prompt": "a man surprised and wearing a police outfit",
+      "score": 0.27224069833755493
+    },
+    "015": {
+      "prompt": "a man smiling and wearing a santa hat",
+      "score": 0.2608180046081543
+    },
+    "016": {
+      "prompt": "a man eating ice-cream and wearing a white T-shirt",
+      "score": 0.28209981322288513
+    },
+    "017": {
+      "prompt": "a man raising eyebrows and wearing a yellow shirt",
+      "score": 0.25174570083618164
+    },
+    "018": {
+      "prompt": "a man smiling and wearing a purple wizard outfit",
+      "score": 0.2504315674304962
+    },
+    "019": {
+      "prompt": "a man frowning and wearing a firefighter outfit",
+      "score": 0.25774073600769043
+    },
+    "020": {
+      "prompt": "a man smiling with black hair",
+      "score": 0.28017285466194153
+    },
+    "021": {
+      "prompt": "a woman crying and wearing a chef outfit",
+      "score": 0.3232385814189911
+    },
+    "022": {
+      "prompt": "a girl laughing and wearing a purple wizard outfit",
+      "score": 0.31203824281692505
+    },
+    "023": {
+      "prompt": "a woman surprised with long blond hair",
+      "score": 0.2720088064670563
+    },
+    "024": {
+      "prompt": "a woman crying with short black hair",
+      "score": 0.30980193614959717
+    },
+    "025": {
+      "prompt": "a woman surprised and wearing a gray sweater",
+      "score": 0.26605576276779175
+    },
+    "026": {
+      "prompt": "a woman eating ice-cream and wearing a black hat",
+      "score": 0.34468919038772583
+    },
+    "027": {
+      "prompt": "a woman frowning and wearing a white hoodie",
+      "score": 0.25086259841918945
+    },
+    "028": {
+      "prompt": "a woman eating cookies with long black hair",
+      "score": 0.18431726098060608
+    },
+    "029": {
+      "prompt": "a girl not smiling and wearing a santa hat",
+      "score": 0.32631319761276245
+    },
+    "030": {
+      "prompt": "a woman frowning with short blond hair",
+      "score": 0.26944953203201294
+    },
+    "031": {
+      "prompt": "a woman surprised and wearing earrings",
+      "score": 0.24989259243011475
+    },
+    "032": {
+      "prompt": "a woman surprised and wearing a blue hoodie",
+      "score": 0.2089497298002243
+    },
+    "033": {
+      "prompt": "a woman eating cookies with long blond hair",
+      "score": 0.3428491950035095
+    },
+    "034": {
+      "prompt": "a woman cooking a meal and wearing a chef outfit",
+      "score": 0.2595560550689697
+    },
+    "035": {
+      "prompt": "a woman not smiling and with long blond hair",
+      "score": 0.24275550246238708
+    },
+    "036": {
+      "prompt": "a man frowning and wearing a white shirt",
+      "score": 0.27113640308380127
+    },
+    "037": {
+      "prompt": "a boy smiling with black hair",
+      "score": 0.2899308204650879
+    },
+    "038": {
+      "prompt": "a boy raising eyebrows and wearing a black T-shirt",
+      "score": 0.24187490344047546
+    },
+    "039": {
+      "prompt": "a man smiling and wearing a white suit",
+      "score": 0.24202300608158112
+    },
+    "040": {
+      "prompt": "a man laughing and wearing a gray sweater",
+      "score": 0.25521397590637207
+    },
+    "041": {
+      "prompt": "a man not smiling and wearing a firefighter outfit",
+      "score": 0.31463390588760376
+    },
+    "042": {
+      "prompt": "a man surprised and wearing a black hat",
+      "score": 0.26431751251220703
+    },
+    "043": {
+      "prompt": "a boy eating cookies and wearing a blue hoodie",
+      "score": 0.3141725957393646
+    },
+    "044": {
+      "prompt": "a man eating ice-cream with blond hair",
+      "score": 0.18142081797122955
+    },
+    "045": {
+      "prompt": "a man not smiling wearing a santa hat",
+      "score": 0.20949004590511322
+    },
+    "046": {
+      "prompt": "a man frowning with blond hair",
+      "score": 0.29491522908210754
+    },
+    "047": {
+      "prompt": "a boy smiling and wearing a purple wizard outfit",
+      "score": 0.30305206775665283
+    },
+    "048": {
+      "prompt": "a man not smiling and wearing headphones",
+      "score": 0.2446165680885315
+    },
+    "049": {
+      "prompt": "a man smiling and wearing a black hat",
+      "score": 0.26340675354003906
+    },
+    "050": {
+      "prompt": "a man eating cookies and wearing a chef outfit",
+      "score": 0.30633145570755005
+    }
+  },
+  "statistics": {
+    "valid_pairs": 50,
+    "failed_pairs": 0,
+    "mean_score": 0.2700778204202652,
+    "std_score": 0.040408712219617254,
+    "min_score": 0.16932350397109985,
+    "max_score": 0.34468919038772583
+  },
+  "failed_pairs": []
+}

@@ -16,7 +16,7 @@ from lavis.models import load_model_and_preprocess
 
 def load_blip_itm(device="cuda"):
     model, vis_processors, txt_processors = load_model_and_preprocess(
-        name="blip_itm",
+        name="blip_image_text_matching",
         model_type="base",
         is_eval=True,
         device=device
@@ -135,8 +135,8 @@ def calculate_blip_scores(
 
 if __name__ == "__main__":
     calculate_blip_scores(
-        image_dir="/data2/jiyoon/PAI-Bench/data/251222/cropped/generated_gemini2.5Flash",
+        image_dir="/data2/jiyoon/PAI-Bench/data/251222/cropped/generated_gpt5.1",
         prompt_json="/data2/jiyoon/PAI-Bench/data/datasets_final/generation_prompts.json",
-        output_path="/home/jiyoon/PAI-Bench/2_prompt_alignment/251222_textimg/results/blip_itm.json",
+        output_path="/home/jiyoon/PAI-Bench/2_prompt_alignment/251222_ITM/blip_GPT5.1.json",
         device="cuda"
     )
