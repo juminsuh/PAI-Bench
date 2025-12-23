@@ -51,6 +51,58 @@
       "score": 0.050385672599077225
     }
   ],
+  "blip_GPT5.1": [
+    {
+      "id": "001",
+      "prompt": "a woman smiling and wearing a white T-shirt",
+      "score": 0.19097378849983215
+    },
+    {
+      "id": "006",
+      "prompt": "a woman holding a glass of wine and wearing a black dress",
+      "score": 0.018729673698544502
+    },
+    {
+      "id": "016",
+      "prompt": "a man eating ice-cream and wearing a white T-shirt",
+      "score": 0.3767698109149933
+    },
+    {
+      "id": "019",
+      "prompt": "a man frowning and wearing a firefighter outfit",
+      "score": 0.5843344926834106
+    },
+    {
+      "id": "022",
+      "prompt": "a girl laughing and wearing a purple wizard outfit",
+      "score": 0.03873498737812042
+    },
+    {
+      "id": "027",
+      "prompt": "a woman frowning and wearing a white hoodie",
+      "score": 0.03376338258385658
+    },
+    {
+      "id": "034",
+      "prompt": "a woman cooking a meal and wearing a chef outfit",
+      "score": 0.0033473933581262827
+    },
+    {
+      "id": "036",
+      "prompt": "a man frowning and wearing a white shirt",
+      "score": 0.3906850218772888
+    },
+    {
+      "id": "041",
+      "prompt": "a man not smiling and wearing a firefighter outfit",
+      "score": 0.2656678855419159
+    },
+    {
+      "id": "048",
+      "prompt": "a man not smiling and wearing headphones",
+      "score": 0.7652456164360046
+    }
+  ],
   "clip_GPT5.1": [
     {
       "id": "006",
