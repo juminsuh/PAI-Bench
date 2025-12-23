@@ -1,130 +1,108 @@
 {
   "blip_Gemini2.5Flash": [
     {
-      "id": "001",
-      "prompt": "a woman smiling and wearing a white T-shirt",
-      "score": 0.027738241478800774
+      "id": "003",
+      "prompt": "a woman smiling with curly long dark brown hair",
+      "score": 0.6742243766784668
     },
     {
-      "id": "006",
-      "prompt": "a woman holding a glass of wine and wearing a black dress",
-      "score": 0.0012460706057026982
+      "id": "009",
+      "prompt": "a woman crying with long black hair",
+      "score": 0.8628520369529724
     },
     {
-      "id": "012",
-      "prompt": "a man holding a glass of wine and wearing a white suit",
-      "score": 0.008793427608907223
+      "id": "014",
+      "prompt": "a man surprised and wearing a police outfit",
+      "score": 0.980278730392456
     },
     {
       "id": "016",
       "prompt": "a man eating ice-cream and wearing a white T-shirt",
-      "score": 0.0011743003269657493
+      "score": 0.15856751799583435
     },
     {
       "id": "024",
       "prompt": "a woman crying with short black hair",
-      "score": 0.25810492038726807
+      "score": 0.935691773891449
     },
     {
-      "id": "032",
-      "prompt": "a woman surprised and wearing a blue hoodie",
-      "score": 0.3066043555736542
-    },
-    {
-      "id": "034",
-      "prompt": "a woman cooking a meal and wearing a chef outfit",
-      "score": 0.06322021037340164
-    },
-    {
-      "id": "044",
-      "prompt": "a man eating ice-cream with blond hair",
-      "score": 0.0009846104076132178
-    },
-    {
-      "id": "045",
-      "prompt": "a man not smiling wearing a santa hat",
-      "score": 0.0003448975912760943
-    },
-    {
-      "id": "048",
-      "prompt": "a man not smiling and wearing headphones",
-      "score": 0.050385672599077225
-    }
-  ],
-  "blip_GPT5.1": [
-    {
-      "id": "001",
-      "prompt": "a woman smiling and wearing a white T-shirt",
-      "score": 0.19097378849983215
-    },
-    {
-      "id": "006",
-      "prompt": "a woman holding a glass of wine and wearing a black dress",
-      "score": 0.018729673698544502
-    },
-    {
-      "id": "016",
-      "prompt": "a man eating ice-cream and wearing a white T-shirt",
-      "score": 0.3767698109149933
-    },
-    {
-      "id": "019",
-      "prompt": "a man frowning and wearing a firefighter outfit",
-      "score": 0.5843344926834106
-    },
-    {
-      "id": "022",
-      "prompt": "a girl laughing and wearing a purple wizard outfit",
-      "score": 0.03873498737812042
-    },
-    {
-      "id": "027",
-      "prompt": "a woman frowning and wearing a white hoodie",
-      "score": 0.03376338258385658
+      "id": "031",
+      "prompt": "a woman surprised and wearing earrings",
+      "score": 0.9683997631072998
     },
     {
       "id": "034",
       "prompt": "a woman cooking a meal and wearing a chef outfit",
-      "score": 0.0033473933581262827
+      "score": 0.9608744382858276
+    },
+    {
+      "id": "035",
+      "prompt": "a woman not smiling and with long blond hair",
+      "score": 0.9101223945617676
     },
     {
       "id": "036",
       "prompt": "a man frowning and wearing a white shirt",
-      "score": 0.3906850218772888
+      "score": 0.9770650863647461
     },
     {
-      "id": "041",
-      "prompt": "a man not smiling and wearing a firefighter outfit",
-      "score": 0.2656678855419159
+      "id": "044",
+      "prompt": "a man eating ice-cream with blond hair",
+      "score": 0.0003094742714893073
     },
     {
-      "id": "048",
-      "prompt": "a man not smiling and wearing headphones",
-      "score": 0.7652456164360046
+      "id": "045",
+      "prompt": "a man not smiling wearing a santa hat",
+      "score": 6.855885294498876e-05
     }
   ],
-  "clip_GPT5.1": [
+  "blip_GPT5.1": [
     {
-      "id": "006",
-      "prompt": "a woman holding a glass of wine and wearing a black dress",
-      "score": 0.18020784854888916
+      "id": "004",
+      "prompt": "a woman smiling and wearing a black hat",
+      "score": 0.9931910634040833
     },
     {
-      "id": "012",
-      "prompt": "a man holding a glass of wine and wearing a white suit",
-      "score": 0.17084568738937378
+      "id": "016",
+      "prompt": "a man eating ice-cream and wearing a white T-shirt",
+      "score": 0.9886101484298706
+    },
+    {
+      "id": "031",
+      "prompt": "a woman surprised and wearing earrings",
+      "score": 0.947636604309082
     },
     {
       "id": "034",
       "prompt": "a woman cooking a meal and wearing a chef outfit",
-      "score": 0.17534181475639343
+      "score": 0.9324904680252075
+    },
+    {
+      "id": "036",
+      "prompt": "a man frowning and wearing a white shirt",
+      "score": 0.9923404455184937
+    },
+    {
+      "id": "042",
+      "prompt": "a man surprised and wearing a black hat",
+      "score": 0.9936555624008179
+    },
+    {
+      "id": "048",
+      "prompt": "a man not smiling and wearing headphones",
+      "score": 0.9935123324394226
     }
   ],
   "clip_Gemini2.5Flash": [
     {
-      "id": "006",
-      "prompt": "a woman holding a glass of wine and wearing a black dress",
-      "score": 0.16932350397109985
+      "id": "044",
+      "prompt": "a man eating ice-cream with blond hair",
+      "score": 0.18132241070270538
+    },
+    {
+      "id": "045",
+      "prompt": "a man not smiling wearing a santa hat",
+      "score": 0.21176069974899292
     }
   ]
 }

@@ -135,8 +135,8 @@ def calculate_blip_scores(
 
 if __name__ == "__main__":
     calculate_blip_scores(
-        image_dir="/data2/jiyoon/PAI-Bench/data/251222/cropped/generated_gpt5.1",
+        image_dir="/data2/jiyoon/PAI-Bench/data/datasets_final/generation/generated_gemini2.5Flash",
         prompt_json="/data2/jiyoon/PAI-Bench/data/datasets_final/generation_prompts.json",
-        output_path="/home/jiyoon/PAI-Bench/2_prompt_alignment/251222_ITM/blip_GPT5.1.json",
+        output_path="/home/jiyoon/PAI-Bench/2_prompt_alignment/251222_ITM/results/blip_Gemini2.5Flash.json",
         device="cuda"
     )

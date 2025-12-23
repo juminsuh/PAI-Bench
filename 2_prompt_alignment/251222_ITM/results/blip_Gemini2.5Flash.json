@@ -3,261 +3,261 @@
   "scores": {
     "001": {
       "prompt": "a woman smiling and wearing a white T-shirt",
-      "logit": -1.7794888019561768,
-      "probability": 0.027738241478800774
+      "logit": 2.527925491333008,
+      "probability": 0.9937018156051636
     },
     "002": {
       "prompt": "a woman laughing with long blond hair",
-      "logit": 2.2451324462890625,
-      "probability": 0.988903820514679
+      "logit": 2.726210594177246,
+      "probability": 0.9957350492477417
     },
     "003": {
       "prompt": "a woman smiling with curly long dark brown hair",
-      "logit": 0.6227442026138306,
-      "probability": 0.7757643461227417
+      "logit": 0.36543509364128113,
+      "probability": 0.6742243766784668
     },
     "004": {
       "prompt": "a woman smiling and wearing a black hat",
-      "logit": 3.5073580741882324,
-      "probability": 0.9991011619567871
+      "logit": 3.0908138751983643,
+      "probability": 0.9979351758956909
     },
     "005": {
       "prompt": "a woman surprised and wearing a chef outfit",
-      "logit": 4.269611835479736,
-      "probability": 0.9998052716255188
+      "logit": 4.045744895935059,
+      "probability": 0.9996945858001709
     },
     "006": {
       "prompt": "a woman holding a glass of wine and wearing a black dress",
-      "logit": -3.3445920944213867,
-      "probability": 0.0012460706057026982
+      "logit": 3.543045997619629,
+      "probability": 0.9991699457168579
     },
     "007": {
       "prompt": "a woman eating ice-cream with long black hair",
-      "logit": 4.016120433807373,
-      "probability": 0.999677300453186
+      "logit": 4.084588050842285,
+      "probability": 0.9997187256813049
     },
     "008": {
       "prompt": "a woman smiling and in a chef outfit",
-      "logit": 2.502504587173462,
-      "probability": 0.993314802646637
+      "logit": 2.573845624923706,
+      "probability": 0.9941962957382202
     },
     "009": {
       "prompt": "a woman crying with long black hair",
-      "logit": 1.612769365310669,
-      "probability": 0.9618080258369446
+      "logit": 0.9195756912231445,
+      "probability": 0.8628520369529724
     },
     "010": {
       "prompt": "a woman smiling and wearing headphones",
-      "logit": 2.815136432647705,
-      "probability": 0.9964314699172974
+      "logit": 2.6492481231689453,
+      "probability": 0.9950276017189026
     },
     "011": {
       "prompt": "a man smiling and wearing a chef outfit",
-      "logit": 0.772689938545227,
-      "probability": 0.8236643671989441
+      "logit": 2.6471643447875977,
+      "probability": 0.9949949979782104
     },
     "012": {
       "prompt": "a man holding a glass of wine and wearing a white suit",
-      "logit": -2.363999128341675,
-      "probability": 0.008793427608907223
+      "logit": 4.282972812652588,
+      "probability": 0.9998111128807068
     },
     "013": {
       "prompt": "a man smiling and wearing a black hat",
-      "logit": 3.322930097579956,
-      "probability": 0.9987025260925293
+      "logit": 3.6535871028900146,
+      "probability": 0.9993308782577515
     },
     "014": {
       "prompt": "a man surprised and wearing a police outfit",
-      "logit": 3.44521164894104,
-      "probability": 0.9989859461784363
+      "logit": 1.9530268907546997,
+      "probability": 0.980278730392456
     },
     "015": {
       "prompt": "a man smiling and wearing a santa hat",
-      "logit": 3.237910270690918,
-      "probability": 0.9984657764434814
+      "logit": 3.4546217918395996,
+      "probability": 0.9990039467811584
     },
     "016": {
       "prompt": "a man eating ice-cream and wearing a white T-shirt",
-      "logit": -3.3760712146759033,
-      "probability": 0.0011743003269657493
+      "logit": -0.8362646102905273,
+      "probability": 0.15856751799583435
     },
     "017": {
       "prompt": "a man raising eyebrows and wearing a yellow shirt",
-      "logit": 0.21280691027641296,
-      "probability": 0.6041443347930908
+      "logit": 4.006900310516357,
+      "probability": 0.9996697902679443
     },
     "018": {
       "prompt": "a man smiling and wearing a purple wizard outfit",
-      "logit": 2.1516928672790527,
-      "probability": 0.9867218732833862
+      "logit": 4.853498458862305,
+      "probability": 0.9999395608901978
     },
     "019": {
       "prompt": "a man frowning and wearing a firefighter outfit",
-      "logit": 1.9830613136291504,
-      "probability": 0.9813897013664246
+      "logit": 2.8768160343170166,
+      "probability": 0.9968397617340088
     },
     "020": {
       "prompt": "a man smiling with black hair",
-      "logit": 2.8390533924102783,
-      "probability": 0.9965994954109192
+      "logit": 2.9165234565734863,
+      "probability": 0.9970876574516296
     },
     "021": {
       "prompt": "a woman crying and wearing a chef outfit",
-      "logit": 0.49889472126960754,
-      "probability": 0.7298632860183716
+      "logit": 3.078004837036133,
+      "probability": 0.9978795051574707
     },
     "022": {
       "prompt": "a girl laughing and wearing a purple wizard outfit",
-      "logit": 4.125467300415039,
-      "probability": 0.9997405409812927
+      "logit": 4.959696292877197,
+      "probability": 0.9999511241912842
     },
     "023": {
       "prompt": "a woman surprised with long blond hair",
-      "logit": 3.4739468097686768,
-      "probability": 0.9990422129631042
+      "logit": 3.920609474182129,
+      "probability": 0.9996083378791809
     },
     "024": {
       "prompt": "a woman crying with short black hair",
-      "logit": -0.528651237487793,
-      "probability": 0.25810492038726807
+      "logit": 1.3376307487487793,
+      "probability": 0.935691773891449
     },
     "025": {
       "prompt": "a woman surprised and wearing a gray sweater",
-      "logit": 4.255519866943359,
-      "probability": 0.9998001456260681
+      "logit": 4.737891674041748,
+      "probability": 0.9999239444732666
     },
     "026": {
       "prompt": "a woman eating ice-cream and wearing a black hat",
-      "logit": 3.3393170833587646,
-      "probability": 0.9987483024597168
+      "logit": 3.2274832725524902,
+      "probability": 0.9984347224235535
     },
     "027": {
       "prompt": "a woman frowning and wearing a white hoodie",
-      "logit": 2.2483716011047363,
-      "probability": 0.9890263676643372
+      "logit": 4.699502944946289,
+      "probability": 0.9999179840087891
     },
     "028": {
       "prompt": "a woman eating cookies with long black hair",
-      "logit": 0.6051027178764343,
-      "probability": 0.7697263360023499
+      "logit": 2.59883189201355,
+      "probability": 0.9945032596588135
     },
     "029": {
       "prompt": "a girl not smiling and wearing a santa hat",
-      "logit": 3.25331711769104,
-      "probability": 0.998515784740448
+      "logit": 3.976193904876709,
+      "probability": 0.9996501207351685
     },
     "030": {
       "prompt": "a woman frowning with short blond hair",
-      "logit": 2.7211129665374756,
-      "probability": 0.9957073926925659
+      "logit": 4.030576229095459,
+      "probability": 0.999686598777771
     },
     "031": {
       "prompt": "a woman surprised and wearing earrings",
-      "logit": 2.133286714553833,
-      "probability": 0.9861806035041809
+      "logit": 1.7111186981201172,
+      "probability": 0.9683997631072998
     },
     "032": {
       "prompt": "a woman surprised and wearing a blue hoodie",
-      "logit": -0.4068268835544586,
-      "probability": 0.3066043555736542
+      "logit": 3.332080364227295,
+      "probability": 0.9987291693687439
     },
     "033": {
       "prompt": "a woman eating cookies with long blond hair",
-      "logit": 3.1872076988220215,
-      "probability": 0.9983043670654297
+      "logit": 3.269576072692871,
+      "probability": 0.9985633492469788
     },
     "034": {
       "prompt": "a woman cooking a meal and wearing a chef outfit",
-      "logit": -1.3460508584976196,
-      "probability": 0.06322021037340164
+      "logit": 1.6031917333602905,
+      "probability": 0.9608744382858276
     },
     "035": {
       "prompt": "a woman not smiling and with long blond hair",
-      "logit": 0.30315524339675903,
-      "probability": 0.6475239992141724
+      "logit": 1.1559193134307861,
+      "probability": 0.9101223945617676
     },
     "036": {
       "prompt": "a man frowning and wearing a white shirt",
-      "logit": 1.083752989768982,
-      "probability": 0.8975814580917358
+      "logit": 1.8740942478179932,
+      "probability": 0.9770650863647461
     },
     "037": {
       "prompt": "a boy smiling with black hair",
-      "logit": 3.4704971313476562,
-      "probability": 0.9990395903587341
+      "logit": 4.188767910003662,
+      "probability": 0.999771773815155
     },
     "038": {
       "prompt": "a boy raising eyebrows and wearing a black T-shirt",
-      "logit": 3.11409592628479,
-      "probability": 0.9980452060699463
+      "logit": 3.325615882873535,
+      "probability": 0.9987186193466187
     },
     "039": {
       "prompt": "a man smiling and wearing a white suit",
-      "logit": 2.2533905506134033,
-      "probability": 0.989105761051178
+      "logit": 2.893712282180786,
+      "probability": 0.9969520568847656
     },
     "040": {
       "prompt": "a man laughing and wearing a gray sweater",
-      "logit": 0.707017183303833,
-      "probability": 0.8052650094032288
+      "logit": 4.205109596252441,
+      "probability": 0.9997791647911072
     },
     "041": {
       "prompt": "a man not smiling and wearing a firefighter outfit",
-      "logit": 1.4154889583587646,
-      "probability": 0.944378674030304
+      "logit": 2.383075714111328,
+      "probability": 0.9915655851364136
     },
     "042": {
       "prompt": "a man surprised and wearing a black hat",
-      "logit": 2.3794009685516357,
-      "probability": 0.9914932250976562
+      "logit": 2.629607915878296,
+      "probability": 0.9948203563690186
     },
     "043": {
       "prompt": "a boy eating cookies and wearing a blue hoodie",
-      "logit": 3.9267399311065674,
-      "probability": 0.9996145963668823
+      "logit": 4.343750953674316,
+      "probability": 0.9998329877853394
     },
     "044": {
       "prompt": "a man eating ice-cream with blond hair",
-      "logit": -3.4609732627868652,
-      "probability": 0.0009846104076132178
+      "logit": -4.04012393951416,
+      "probability": 0.0003094742714893073
     },
     "045": {
       "prompt": "a man not smiling wearing a santa hat",
-      "logit": -3.9876561164855957,
-      "probability": 0.0003448975912760943
+      "logit": -4.794363498687744,
+      "probability": 6.855885294498876e-05
     },
     "046": {
       "prompt": "a man frowning with blond hair",
-      "logit": 4.053849697113037,
-      "probability": 0.9997005462646484
+      "logit": 3.7384445667266846,
+      "probability": 0.9994378685951233
     },
     "047": {
       "prompt": "a boy smiling and wearing a purple wizard outfit",
-      "logit": 2.360917329788208,
-      "probability": 0.9912266135215759
+      "logit": 4.964613437652588,
+      "probability": 0.9999516010284424
     },
     "048": {
       "prompt": "a man not smiling and wearing headphones",
-      "logit": -1.47089684009552,
-      "probability": 0.050385672599077225
+      "logit": 1.9923732280731201,
+      "probability": 0.9818658232688904
     },
     "049": {
       "prompt": "a man smiling and wearing a black hat",
-      "logit": 3.4224190711975098,
-      "probability": 0.9989365935325623
+      "logit": 2.6811983585357666,
+      "probability": 0.9953268766403198
     },
     "050": {
       "prompt": "a man eating cookies and wearing a chef outfit",
-      "logit": 4.065148830413818,
-      "probability": 0.9997065663337708
+      "logit": 3.0623905658721924,
+      "probability": 0.997815728187561
     }
   },
   "statistics": {
     "num_samples": 50,
-    "mean": 0.7709670021169586,
-    "std": 0.36470877099431714,
-    "min": 0.0003448975912760943,
-    "max": 0.9998052716255188,
+    "mean": 0.9266599522154138,
+    "std": 0.22713802988895332,
+    "min": 6.855885294498876e-05,
+    "max": 0.9999516010284424,
     "failed": 0
   },
   "failed_ids": []

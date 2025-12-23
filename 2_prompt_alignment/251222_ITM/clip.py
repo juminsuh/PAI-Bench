@@ -130,10 +130,10 @@ def calculate_clip_scores_from_features(image_features_dir: str, text_features_d
 
 
 def main():
-    image_features_dir = "/data2/jiyoon/PAI-Bench/data/251222/img_features/clip_gpt5.1"
+    image_features_dir = "/data2/jiyoon/PAI-Bench/data/251222/img_features/clip_gemini2.5Flash"
     text_features_dir = "/data2/jiyoon/PAI-Bench/data/251222/text_features/clip"
     prompt_json = "/data2/jiyoon/PAI-Bench/data/datasets_final/generation_prompts.json"
-    output_path = "/home/jiyoon/PAI-Bench/2_prompt_alignment/251222_ITM/results/clip_GPT5.1.json"
+    output_path = "/home/jiyoon/PAI-Bench/2_prompt_alignment/251222_ITM/results/clip_gemini2.5Flash"
     
     calculate_clip_scores_from_features(image_features_dir, text_features_dir, prompt_json, output_path)
 
